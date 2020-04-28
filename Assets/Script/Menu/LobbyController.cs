@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviourPunCallbacks {
@@ -95,6 +96,7 @@ public class LobbyController : MonoBehaviourPunCallbacks {
     public void CreateRoom () {
         Debug.Log ("creating Room");
         RoomOptions option = new RoomOptions () { IsVisible = true, IsOpen = true, MaxPlayers = (byte) roomSize };
+        option.CustomRoomProperties = new Hashtable() {{"ready", 1}};
         PhotonNetwork.CreateRoom (roomName, option);
     }
 
