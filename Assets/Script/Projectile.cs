@@ -13,11 +13,13 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        // transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         transform.position += new Vector3 (dir.x * Time.deltaTime * projectileSpeed, dir.y * Time.deltaTime * projectileSpeed, 0);
     }
 
     public void SetDirection(Vector2 direction)
     {
         dir = direction;
+        dir.Normalize();
     }
 }

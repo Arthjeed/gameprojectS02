@@ -4,65 +4,64 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    public GameObject playerCamera;
+    // public GameObject playerCamera;
     public GameObject shipCamera;
+    public GameObject playerCamera;
+    private CameraFollowPlayer cam;
     private Post interactObject;
-    private KeyCode interactKey = KeyCode.E;
     private KeyCode cancelKey = KeyCode.R;
     private MonoBehaviour[] comps;
+    private MovementPlayer movement;
     private Rigidbody2D rb;
     private Renderer[] rs;
+    private bool interacting = false;
 
     void Start()
     {
         comps = GetComponents<MonoBehaviour>();
         rb = GetComponent<Rigidbody2D>();
         rs = GetComponentsInChildren<Renderer>();
+        cam = playerCamera.GetComponent<CameraFollowPlayer>();
+        movement = GetComponent<MovementPlayer>();
     }
 
     void Update()
     {
         if (interactObject)
         {
-            if (Input.GetButtonDown("Jump") && interactObject)
+            if (Input.GetButtonDown("Jump") && !interacting)
             {
                 print("interacting with " + interactObject.name);
                 interactObject.UsePost(gameObject);
-                foreach (MonoBehaviour c in comps)
-                {
-                    c.enabled = false;
-                }
-                this.enabled = true;
-                rb.velocity = new Vector2(0, 0);
+                movement.PlayIdle();
                 SetView(false);
-                playerCamera.SetActive(false);
-                shipCamera.SetActive(true);
-                // gameObject.SetActive(false);
-                // gameObject.enabled = false;
+                rb.velocity = new Vector2(0, 0);
+                interacting = true;
             }
-            if (Input.GetKeyDown(cancelKey) && interactObject)
+            if (Input.GetButtonDown("Cancel") && interacting)
             {
                 foreach (MonoBehaviour c in comps)
-                {
                     c.enabled = true;
-                }
-                interactObject.GetOutPost();
                 SetView(true);
-                playerCamera.SetActive(true);
-                shipCamera.SetActive(false);
+                interactObject.GetOutPost();
+                interacting = false;
             }
         }
     }
 
     public void SetView(bool view)
     {
+        foreach (MonoBehaviour c in comps)
+            c.enabled = view;
+        this.enabled = true;
         foreach (Renderer r in rs)
             r.enabled = view;
+        cam.SwitchCamera();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Post")
+        if (collision.gameObject.CompareTag("Post"))
         {
             Post post = collision.gameObject.GetComponent<Post>();
             interactObject = post;

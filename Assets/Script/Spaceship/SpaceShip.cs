@@ -7,27 +7,80 @@ public class SpaceShip : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rb;
     public Vector2 maxVelocity = new Vector2(1, 1);
-    public float maxSpeed = 5;
+    public float maxSpeed = 20;
+    public float chargeSpeed = 10f;
+    public float crashSlowSpeed = 0.4f;
+    private float speed = 0;
+    private Vector3 currentVelo;
+    private Vector3 crashVelo; 
+    private Transform transf;
+    private bool isCrashing = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transf = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (isCrashing)
+            transf.Translate(crashVelo, Space.World);
+        else
+            transf.Translate(transform.forward * speed, Space.World);
+        // else
+        //     transf.Translate(currentVelo, Space.World);
+        // rb.velocity = transform.forward * Time.deltaTime * speed;
+        // rb.AddForce(transform.forward * Time.deltaTime * speed);
     }
 
-    public void ApplyVelocity(Vector2 velocity) {
-        Vector2 tmpVelocity = rb.velocity + velocity;
-        float signX = Mathf.Sign(tmpVelocity.x);
-        float signY = Mathf.Sign(tmpVelocity.y);
-        // print(tmpVelocity);
-        tmpVelocity.x = Mathf.Clamp(Mathf.Abs(tmpVelocity.x), 0, maxVelocity.x);
-        tmpVelocity.x = signX * tmpVelocity.x;
-        tmpVelocity.y = Mathf.Clamp(Mathf.Abs(tmpVelocity.y), 0, maxVelocity.y);
-        tmpVelocity.y = signY * tmpVelocity.y;
+    public void SlowDown()
+    {
+        if (isCrashing)
+        {
+            speed += Time.deltaTime * chargeSpeed;
+            if (speed > 0)
+                isCrashing = false;
+        }
+        else
+        {
+            speed -= Time.deltaTime * chargeSpeed;
+            speed = Mathf.Clamp(speed, 0, maxSpeed);
+            currentVelo = transform.forward * speed;
+        }
+    }
+
+    public void Accelerate()
+    {
+        if (isCrashing)
+        {
+            speed += Time.deltaTime * chargeSpeed;
+            if (speed > 0)
+                isCrashing = false;
+        }
+        else
+        {
+            speed += Time.deltaTime * chargeSpeed;
+            speed = Mathf.Clamp(speed, 0, maxSpeed);
+            currentVelo = transform.forward * speed;
+        }
+    }
+
+    public void Crash()
+    {
+        isCrashing = true;
+        speed = -speed;
+        crashVelo = transform.forward * speed * crashSlowSpeed;
+    }
+
+    public void ApplyVelocity(Vector2 velocity)
+    {
+        // Vector2 tmpVelocity = rb.velocity + velocity;
+        // float signX = Mathf.Sign(tmpVelocity.x);
+        // float signY = Mathf.Sign(tmpVelocity.y);
+        // tmpVelocity.x = Mathf.Clamp(Mathf.Abs(tmpVelocity.x), 0, maxVelocity.x);
+        // tmpVelocity.x = signX * tmpVelocity.x;
+        // tmpVelocity.y = Mathf.Clamp(Mathf.Abs(tmpVelocity.y), 0, maxVelocity.y);
+        // tmpVelocity.y = signY * tmpVelocity.y;
         // if (signX == Mathf.Sign(velocity.x) && velocity.x * maxSpeed > tmpVelocity.x) {
         //     tmpVelocity.x = Mathf.Clamp(Mathf.Abs(tmpVelocity.x), 0, Mathf.Abs(velocity.x) * maxSpeed);
         //     tmpVelocity.x = signX * tmpVelocity.x;
@@ -58,6 +111,6 @@ public class SpaceShip : MonoBehaviour
         //     tmpVelocity.y = Mathf.Clamp(tmpVelocity.y, -Mathf.Abs(velocity.y * maxSpeed), velocity.y * maxSpeed);
         // print("after");
         // print(tmpVelocity);
-        rb.velocity = tmpVelocity;
+        // rb.velocity = tmpVelocity;
     }
 }

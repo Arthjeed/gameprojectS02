@@ -16,6 +16,10 @@ public class ThrusterControls : MonoBehaviour
     private SpaceShip ship;
     private float angle = 90;
     private float rayon = 100;
+    private bool buttonIsDown = true;
+    private KeyCode interactKey = KeyCode.E;
+    private ParticleSystem particle;
+
     // private float angle = 0;
 
     void Start()
@@ -25,13 +29,16 @@ public class ThrusterControls : MonoBehaviour
         parent = transform.parent.gameObject;
         ship = parent.GetComponent<SpaceShip>();
         rayon = Vector2.Distance(position, parent.transform.position);
+        particle = GetComponent<ParticleSystem>();
+        particle.Stop();
+        this.enabled = false;
     }
 
     void Update()
     {
         position = transform.position;
         localPosition = transform.localPosition;
-        float x = Input.GetAxis("Horizontal");
+        // float x = Input.GetAxis("Horizontal");
         // if (x != 0)
         //     RotateThruster(x);
         ActivateThruster();
@@ -63,13 +70,35 @@ public class ThrusterControls : MonoBehaviour
         }
     }
 
-    void ActivateThruster() {
-        if (Input.GetButtonDown("Jump")) {
-            Vector2 parentPos = parent.transform.position;
-            Vector2 dir = parentPos - position;
-            Vector2 power = new Vector2(dir.x * thrusterPower.x, dir.y * thrusterPower.y);
-            Debug.Log(dir);
-            ship.ApplyVelocity(power);
+    void ActivateThruster()
+    {
+        if (Input.GetButton("Jump"))
+        {
+            ship.Accelerate();
+            if (particle.isStopped)
+                particle.Play();
         }
+        if (Input.GetButtonUp("Jump"))
+            particle.Stop();
+        if (Input.GetButton("Action1"))
+            ship.SlowDown();
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     // Vector2 parentPos = parent.transform.position;
+        //     // Vector2 dir = parentPos - position;
+        //     // Vector2 power = new Vector2(dir.x * thrusterPower.x, dir.y * thrusterPower.y);
+        //     // Debug.Log(dir);
+        //     // ship.ApplyVelocity(power);
+        //     buttonIsDown = true;
+        // }
+        // if (Input.GetButtonUp("Jump"))
+        //     buttonIsDown = false;
+        
+        // if (buttonIsDown)
+        // {
+        //     // Vector2 power = new Vector2(0, 0);
+        //     // ship.ApplyVelocity(power);
+        //     ship.Accelerate();
+        // }
     }
 }

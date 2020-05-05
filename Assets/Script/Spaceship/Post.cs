@@ -9,7 +9,7 @@ public class Post : MonoBehaviour
 
     public enum postType
     {
-        Canon, Thruster, Shield
+        Canon, Turret, Thruster, Shield, Rotate
     };
 
     public Post.postType type;
@@ -19,22 +19,9 @@ public class Post : MonoBehaviour
 
     }
 
-    void Update()
-    {
-
-    }
-
     public void GetOutPost() {
         if (postPlayer)
         {
-            // ThrusterControls tmp = post.GetComponent<ThrusterControls>();
-            // if (tmp)
-            //     tmp.enabled = false;
-            // else
-            // {
-            //     Canon tmpCanon = post.GetComponent<Canon>();
-            //     tmpCanon.enabled = false;
-            // }
             postPlayer = null;
             switch (type)
             {
@@ -45,6 +32,14 @@ public class Post : MonoBehaviour
                 case postType.Thruster:
                     ThrusterControls tmp = post.GetComponent<ThrusterControls>();
                     tmp.enabled = false;
+                    break;
+                case postType.Turret:
+                    Turret turret = post.GetComponent<Turret>();
+                    turret.enabled = false;
+                    break;
+                case postType.Rotate:
+                    RotateShip rotate = post.GetComponent<RotateShip>();
+                    rotate.enabled = false;
                     break;
                 default:
                     break;
@@ -57,14 +52,6 @@ public class Post : MonoBehaviour
         if (!postPlayer)
         {
             postPlayer = player;
-            // ThrusterControls tmp = post.GetComponent<ThrusterControls>();
-            // if (tmp)
-            //     tmp.enabled = true;
-            // else
-            // {
-            //     Canon tmpCanon = post.GetComponent<Canon>();
-            //     tmpCanon.enabled = true;
-            // }
             switch (type)
             {
                 case postType.Canon:
@@ -74,6 +61,14 @@ public class Post : MonoBehaviour
                 case postType.Thruster:
                     ThrusterControls tmp = post.GetComponent<ThrusterControls>();
                     tmp.enabled = true;
+                    break;
+                case postType.Turret:
+                    Turret turret = post.GetComponent<Turret>();
+                    turret.enabled = true;
+                    break;
+                case postType.Rotate:
+                    RotateShip rotate = post.GetComponent<RotateShip>();
+                    rotate.enabled = true;
                     break;
                 default:
                     break;

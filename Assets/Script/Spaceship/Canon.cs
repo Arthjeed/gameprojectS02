@@ -24,7 +24,8 @@ public class Canon : MonoBehaviour
         Vector2 parentPos = parent.transform.position;
         Vector2 position = transform.position;
         Vector2 dir = position - parentPos;
-        GameObject newProj = Instantiate(projectile, position, Quaternion.identity);
+        Quaternion rotation = transform.rotation;// * parent.transform.rotation;
+        GameObject newProj = Instantiate(projectile, position, rotation);
         newProj.GetComponent<Projectile>().SetDirection(dir);
     }
 }
