@@ -26,7 +26,7 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         checkDistance();
         //shipMovement.strafe(transform.right);
-        player.position += (Vector3.up /10);
+        player.position += (Vector3.up /50);
     }
 
     void checkDistance()
