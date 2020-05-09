@@ -38,6 +38,7 @@ float yMove = Input.GetAxis("Vertical");
 float xSpeed = xMove * speed;
 float ySpeed = yMove * speed;
 Vector2 newVelocity = new Vector2(xSpeed, ySpeed);
+// newVelocity = Vector2.Lerp(transform.position, truePosition, Time.deltaTime);
 rigidBody2D.velocity = newVelocity;
 // restrict player movement
 KeepWithinMinMaxRectangle();

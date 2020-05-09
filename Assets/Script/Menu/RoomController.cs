@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class RoomController : MonoBehaviourPunCallbacks {
+
+    public Text selectedText;
     [SerializeField]
     private int multiplayerSceneIndex;
     // private RoomInfos RI;
@@ -118,6 +120,7 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     // Start is called before the first frame update
     void Start () {
+        selectedText.text = "You have selected : char 1"; 
         if (PhotonNetwork.IsMasterClient) {
             Hashtable hash = new Hashtable ();
             hash.Add ("ready", 1);
