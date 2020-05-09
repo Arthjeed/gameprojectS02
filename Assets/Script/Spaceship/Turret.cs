@@ -75,8 +75,8 @@ public class Turret : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            print(transf.rotation);
-            print(transf.localRotation);
+            // print(transf.rotation);
+            // print(transf.localRotation);
             // Vector3 rotation = transf.localRotation * Vector3.forward;
             Quaternion rotation = transf.rotation * parentRot;
             // GameObject newProj = Instantiate(projectile, transf.position, Quaternion.LookRotation(transf.forward, Vector3.up));
