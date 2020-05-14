@@ -14,7 +14,7 @@ public class FollowPlayer : MonoBehaviour
 
     public void followTarget(Transform target)
     {
-        if (Vector3.Distance(transform.position, target.position) > 50)
+        if (Vector3.Distance(transform.position, target.position) > 150)
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         transform.LookAt(target.position);
 

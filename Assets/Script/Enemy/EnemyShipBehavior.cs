@@ -26,14 +26,14 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         checkDistance();
         //shipMovement.strafe(transform.right);
-        player.position += (Vector3.up /50);
+        //player.position += (Vector3.up /50);
     }
 
     void checkDistance()
     {
         if (Vector3.Distance(transform.position, player.position) < 500)
         {
-            if (Vector3.Distance(transform.position, player.position) < 50)
+            if (Vector3.Distance(transform.position, player.position) < 150)
             {
                 switch (ShipAILevel)
                 {
@@ -61,30 +61,39 @@ public class EnemyShipBehavior : MonoBehaviour
      //dodge(transform.forward, 0);
     }
 
-/*    void dodge(Vector3 direction, int loop)
-    {
-        if (loop == 100)
-            return;
-        print(loop);
-        loop++;
-        ray.origin = transform.position;
-        ray.direction = (transform.forward + (direction * (loop/ 100)));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100))
+    /*    void dodge(Vector3 direction, int loop)
         {
-            if (hit.collider.tag == "Wall")
+            if (loop == 100)
+                return;
+            print(loop);
+            loop++;
+            ray.origin = transform.position;
+            ray.direction = (transform.forward + (direction * (loop/ 100)));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
             {
-                if (loop % 2 == 1)
-                    dodge(transform.right, loop);
+                if (hit.collider.tag == "Wall")
+                {
+                    if (loop % 2 == 1)
+                        dodge(transform.right, loop);
+                    else
+                        dodge(-transform.right, loop);
+                }
                 else
-                    dodge(-transform.right, loop);
+                {
+                    print(loop);
+                    shipMovement.goForward(0.5f);
+                }
             }
-            else
-            {
-                print(loop);
-                shipMovement.goForward(0.5f);
-            }
+        }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("oui");
+        if (collision.collider.tag == "Player")
+        {
+            Destroy(gameObject);
         }
-    }*/
+    }
 }
