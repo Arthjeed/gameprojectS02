@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 6251121089497135186}
   - component: {fileID: 2122687108811920254}
   - component: {fileID: -4650336777203566274}
+  - component: {fileID: 1436265493449810929}
+  - component: {fileID: 9088904077441907709}
   m_Layer: 0
   m_Name: EnemyShip
   m_TagString: Enenmy
@@ -128,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 20
   damage: 10
-  speedMissile: 0.2
+  speedMissile: 0.5
   reloadTime: 50
   masse: 100
   reactorLight: {fileID: 32411353236927862}
@@ -167,6 +169,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1436265493449810929
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252807758796319413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000038146973, y: 5030440}
+  serializedVersion: 2
+  m_Radius: 9.268733
+--- !u!114 &9088904077441907709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252807758796319413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f476c7ba55034438f1e2e77b49d84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShipAILevel: 1
+  drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
 --- !u!1001 &1802832870555667379
 PrefabInstance:
   m_ObjectHideFlags: 0

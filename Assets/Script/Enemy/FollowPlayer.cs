@@ -19,7 +19,6 @@ public class FollowPlayer : MonoBehaviour
         transform.LookAt(target.position);
 
         lookTarget(target);
-        print(transform.position.x - target.position.x);
         if (transform.position.x - target.position.x < 0)
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -90);
         else

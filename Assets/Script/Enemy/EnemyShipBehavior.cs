@@ -13,6 +13,7 @@ public class EnemyShipBehavior : MonoBehaviour
     private int LEFT = -1;
 
     public int ShipAILevel = 1;
+    public GameObject drop;
 
     void Start()
     {
@@ -88,12 +89,12 @@ public class EnemyShipBehavior : MonoBehaviour
             }
         }*/
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("oui");
         if (collision.collider.tag == "Player")
         {
-            Destroy(gameObject);
+            Instantiate<GameObject>(drop, transform.localPosition, transform.rotation);
+            Destroy(gameObject);    
         }
     }
 }
