@@ -14,7 +14,7 @@ public class Interact : MonoBehaviour
     private MovementPlayer movement;
     private Rigidbody2D rb;
     private Renderer[] rs;
-    private bool interacting = false;
+    public bool interacting = false;
 
     void Start()
     {

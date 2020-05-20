@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;
-    public Transform spaceshipPos;
+    public GameObject spaceship;
+    private Transform spaceshipPos;
     public float transitionSpeed = 5;
     public float cameraSizePlayer = 40;
     public float cameraSizeShip = 120;
@@ -16,59 +17,116 @@ public class CameraFollowPlayer : MonoBehaviour
     private bool cameraOnPlayer = true;
     private Camera cam;
     private Interact interact;
+    private SpaceShip spaceshipInfo;
     void Start()
     {
         initPos = transform.position;
         cam = GetComponent<Camera>();
         interact = player.GetComponent<Interact>();
+        spaceshipPos = spaceship.transform;
+        spaceshipInfo = spaceship.GetComponent<SpaceShip>();
     }
 
-    void Update() {
-        if (Input.GetButtonDown("ZoomOut"))
-           interact.SetView(false);
-        if (Input.GetButtonUp("ZoomOut"))
+    void Update()
+    {
+        if (Input.GetButtonDown("ZoomOut") && !interact.interacting)
+            interact.SetView(false);
+        if (Input.GetButtonUp("ZoomOut") && !interact.interacting)
             interact.SetView(true);
+        if (cameraOnPlayer)
+        {
+            Vector3 tmpPos = new Vector3(player.transform.position.x, player.transform.position.y, initPos.z);
+
+            if (lerpT < 1)
+            {
+                transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+                currentSize = Mathf.Lerp(cameraSizeShip, cameraSizePlayer, lerpT);
+                lerpT += speedLerpT * Time.deltaTime;
+                cam.orthographicSize = currentSize;
+            }
+            else
+                transform.position = tmpPos;
+        }
+        if (!cameraOnPlayer)
+        {
+            Vector3 tmpPos = new Vector3(spaceshipPos.position.x, spaceshipPos.position.y, initPos.z);
+
+            if (lerpT < 1)
+            {
+                transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+                currentSize = Mathf.Lerp(cameraSizePlayer, cameraSizeShip, lerpT);
+                cam.orthographicSize = currentSize;
+                lerpT += speedLerpT * Time.deltaTime;
+            }
+            else
+                transform.position = tmpPos;
+        }
     }
 
     void FixedUpdate()
     {
-        if (cameraOnPlayer) {
-            Vector3 tmpPos = new Vector3(player.transform.position.x, player.transform.position.y, initPos.z);
-            transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * transitionSpeed);
-            currentSize = Mathf.Lerp(cameraSizeShip, cameraSizePlayer, lerpT);
-            if (lerpT < 1)
-                lerpT += speedLerpT * Time.deltaTime;
-            cam.orthographicSize = currentSize;
-        }
-        if (!cameraOnPlayer) {
-            transform.position = Vector3.Lerp(transform.position, spaceshipPos.position, Time.deltaTime * transitionSpeed);
-            currentSize = Mathf.Lerp(cameraSizePlayer, cameraSizeShip, lerpT);
-            cam.orthographicSize = currentSize;
-            if (lerpT < 1)
-                lerpT += speedLerpT * Time.deltaTime;
-        }
+        // if (cameraOnPlayer)
+        // {
+        //     Vector3 tmpPos = new Vector3(player.transform.position.x, player.transform.position.y, initPos.z);
+
+        //     if (lerpT < 1)
+        //     {
+        //         transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+        //         currentSize = Mathf.Lerp(cameraSizeShip, cameraSizePlayer, lerpT);
+        //         lerpT += speedLerpT * Time.deltaTime;
+        //     }
+        //     else
+        //         transform.position = tmpPos;
+        //     // if (lerpT < 1)
+        //     cam.orthographicSize = currentSize;
+        // }
+        // if (!cameraOnPlayer)
+        // {
+        //     Vector3 tmpPos = new Vector3(spaceshipPos.position.x, spaceshipPos.position.y, initPos.z);
+
+        //     if (lerpT < 1)
+        //     {
+        //         transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+        //         currentSize = Mathf.Lerp(cameraSizePlayer, cameraSizeShip, lerpT);
+        //         cam.orthographicSize = currentSize;
+        //         lerpT += speedLerpT * Time.deltaTime;
+        //     }
+        //     else
+        //         transform.position = tmpPos;
+            
+        //     // if (lerpT < 1)
+        // }
     }
 
-    // void LateUpdate() {
-    //     if (!cameraOnPlayer)
-    //     {
-    //         transform.position = Vector3.Lerp(transform.position, spaceshipPos.position, Time.deltaTime * transitionSpeed);
-    //         currentSize = Mathf.Lerp(cameraSizePlayer, cameraSizeShip, lerpT);
-    //         cam.orthographicSize = currentSize;
-    //         if (lerpT < 1)
-    //             lerpT += speedLerpT * Time.deltaTime;
-    //     }
-    // }
-
-    public void SwitchCamera() {
-        // if (lerpT > 1)
+    void LateUpdate()
+    {
+        // if (cameraOnPlayer)
         // {
-            lerpT = 0;
-            cameraOnPlayer = !cameraOnPlayer;
-            if (!cameraOnPlayer)
-                cam.cullingMask = (1 << LayerMask.NameToLayer("Default"));// | (1 << LayerMask.NameToLayer("Wall"));
-            else
-                cam.cullingMask = -1;
+        //     Vector3 tmpPos = new Vector3(player.transform.position.x, player.transform.position.y, initPos.z);
+        //     transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+        //     currentSize = Mathf.Lerp(cameraSizeShip, cameraSizePlayer, lerpT);
+        //     if (lerpT < 1)
+        //         lerpT += speedLerpT * Time.deltaTime;
+        //     cam.orthographicSize = currentSize;
         // }
+        // if (!cameraOnPlayer)
+        // {
+        //     Vector3 tmpPos = new Vector3(spaceshipPos.position.x, spaceshipPos.position.y, initPos.z);
+        //     transform.position = Vector3.Lerp(transform.position, tmpPos, Time.deltaTime * (transitionSpeed + Mathf.Abs(spaceshipInfo.speed) * 10));
+        //     currentSize = Mathf.Lerp(cameraSizePlayer, cameraSizeShip, lerpT);
+        //     cam.orthographicSize = currentSize;
+        //     if (lerpT < 1)
+        //         lerpT += speedLerpT * Time.deltaTime;
+        // }
+    }
+
+    public void SwitchCamera()
+    {
+        lerpT = 0;
+        cameraOnPlayer = !cameraOnPlayer;
+        if (!cameraOnPlayer)
+            cam.cullingMask = (1 << LayerMask.NameToLayer("Default"));// | (1 << LayerMask.NameToLayer("Wall"));
+        else
+            cam.cullingMask = -1;
     }
 }

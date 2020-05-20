@@ -6,11 +6,10 @@ public class SpaceShip : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
-    public Vector2 maxVelocity = new Vector2(1, 1);
     public float maxSpeed = 20;
     public float chargeSpeed = 10f;
     public float crashSlowSpeed = 0.4f;
-    private float speed = 0;
+    public float speed = 0;
     private Vector3 currentVelo;
     private Vector3 crashVelo; 
     private Transform transf;
