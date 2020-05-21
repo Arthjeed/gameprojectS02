@@ -9,7 +9,7 @@ public class Post : MonoBehaviour
 
     public enum postType
     {
-        Canon, Turret, Thruster, Shield, Rotate
+        Canon, Turret, Thruster, Shield, Rotate, MiniShip
     };
 
     public Post.postType type;
@@ -45,6 +45,10 @@ public class Post : MonoBehaviour
                     Shield shield = post.GetComponent<Shield>();
                     shield.enabled = false;
                     break;
+                case postType.MiniShip:
+                    MiniShip ship = post.GetComponent<MiniShip>();
+                    ship.enabled = false;
+                    break;
                 default:
                     break;
             }
@@ -77,6 +81,11 @@ public class Post : MonoBehaviour
                 case postType.Shield:
                     Shield shield = post.GetComponent<Shield>();
                     shield.enabled = true;
+                    break;
+                case postType.MiniShip:
+                    MiniShip ship = post.GetComponent<MiniShip>();
+                    ship.ActivateShip();
+                    ship.enabled = true;
                     break;
                 default:
                     break;
