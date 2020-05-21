@@ -674,7 +674,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99899
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9088904077441907709, guid: f9d62f963061d50469337e93005a8bc0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9d62f963061d50469337e93005a8bc0, type: 3}
 --- !u!1 &1077835934 stripped
 GameObject:
@@ -695,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShipAILevel: 2
-  ShipPower: 0
+  ShipPower: 2
   drop: {fileID: 0}
 --- !u!1 &1346773045 stripped
 GameObject:

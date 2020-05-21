@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShipAILevel: 1
+  ShipPower: 1
   drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
 --- !u!1001 &1802832870555667379
 PrefabInstance:
