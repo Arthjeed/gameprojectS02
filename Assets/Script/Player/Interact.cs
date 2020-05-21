@@ -5,7 +5,6 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     // public GameObject playerCamera;
-    public GameObject shipCamera;
     public GameObject playerCamera;
     private CameraFollowPlayer cam;
     private Post interactObject;
@@ -14,7 +13,7 @@ public class Interact : MonoBehaviour
     private MovementPlayer movement;
     private Rigidbody2D rb;
     private Renderer[] rs;
-    private bool interacting = false;
+    public bool interacting = false;
 
     void Start()
     {
