@@ -70,6 +70,7 @@ public class Interact : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        interactObject = null;
+        if (!interacting)
+            interactObject = null;
     }
 }

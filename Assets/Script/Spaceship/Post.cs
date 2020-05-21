@@ -41,6 +41,10 @@ public class Post : MonoBehaviour
                     RotateShip rotate = post.GetComponent<RotateShip>();
                     rotate.enabled = false;
                     break;
+                case postType.Shield:
+                    Shield shield = post.GetComponent<Shield>();
+                    shield.enabled = false;
+                    break;
                 default:
                     break;
             }
@@ -69,6 +73,10 @@ public class Post : MonoBehaviour
                 case postType.Rotate:
                     RotateShip rotate = post.GetComponent<RotateShip>();
                     rotate.enabled = true;
+                    break;
+                case postType.Shield:
+                    Shield shield = post.GetComponent<Shield>();
+                    shield.enabled = true;
                     break;
                 default:
                     break;

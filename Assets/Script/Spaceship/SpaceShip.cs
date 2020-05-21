@@ -24,7 +24,7 @@ public class SpaceShip : MonoBehaviour
     void Update()
     {
         if (isCrashing)
-            transf.Translate(crashVelo, Space.World);
+            transf.Translate(crashVelo * Mathf.Abs(speed), Space.World);
         else
             transf.Translate(transform.forward * speed, Space.World);
         // else
