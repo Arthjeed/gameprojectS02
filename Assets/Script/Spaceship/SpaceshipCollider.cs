@@ -15,8 +15,6 @@ public class SpaceshipCollider : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print("SpaceshipCollider");
-        print(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Obstacle"))
             ship.Crash();
     }

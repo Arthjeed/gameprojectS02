@@ -5,7 +5,6 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     // public GameObject playerCamera;
-    public GameObject shipCamera;
     public GameObject playerCamera;
     private CameraFollowPlayer cam;
     private Post interactObject;

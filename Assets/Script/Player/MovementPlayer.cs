@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MovementPlayer : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MovementPlayer : MonoBehaviour
     private Quaternion parentRot;
     private Rigidbody2D rbParent;
     private bool animationIsPlaying = false;
-
+    private PhotonView PV;
 
     void Start()
     {
@@ -20,9 +21,16 @@ public class MovementPlayer : MonoBehaviour
         parentRot = parent.transform.rotation;
         rbParent = parent.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
+        PV = GetComponent<PhotonView>();
     }
 
     void Update()
+    {
+        // if (PV.IsMine)
+            Move();
+    }
+
+    void Move()
     {
         float xMove = Input.GetAxis("Horizontal");
         float yMove = Input.GetAxis("Vertical");
@@ -31,7 +39,6 @@ public class MovementPlayer : MonoBehaviour
         {
             Vector3 movement = new Vector3(xMove, 0.0f, yMove);
             Quaternion rotation = parentRot * Quaternion.LookRotation(movement);
-            // rotation *= Quaternion.Euler(-90, 0, 0);
             transform.rotation = rotation;
             velocity.x = xMove * speed * Time.deltaTime;
             velocity.y = yMove * speed * Time.deltaTime;

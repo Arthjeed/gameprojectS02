@@ -10,14 +10,25 @@ public class SpaceShip : MonoBehaviour
     public float chargeSpeed = 10f;
     public float crashSlowSpeed = 0.4f;
     public float speed = 0;
+    public GameObject playerPrefab;
     private Vector3 currentVelo;
     private Vector3 crashVelo; 
     private Transform transf;
     private bool isCrashing = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         transf = transform;
+        InstantiatePlayer();
+    }
+
+    void InstantiatePlayer()
+    {
+        Vector3 playerPos = new Vector3(0, 32.6f, 0); // position to be inside the spaceship at the right height
+        GameObject player = Instantiate(playerPrefab, playerPos, transf.rotation); // give player prefab and spaceship rotation, pos is not important
+        player.transform.parent = transf; // give spaceship as parent
+        player.transform.localPosition = playerPos; // give the local position for the player
     }
 
     void Update()
