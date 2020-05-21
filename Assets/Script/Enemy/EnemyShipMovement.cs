@@ -33,18 +33,7 @@ public class EnemyShipMovement : MonoBehaviour
 
     void Update()
     {
-/*               if (count <= 200 || count >= 500)
-                    goForward(0.5f);
-                else
-                {
-                    stop();
-                    shoot();
-                }
-        if (count >= 600 && count <= 800)
-            turn(transform.right);
-        else if (count >= 800)
-            strafe(-transform.right) ;
-        count++;*/
+
     }
 
     public void goForward(float speed)

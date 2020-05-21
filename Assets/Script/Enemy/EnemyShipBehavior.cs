@@ -13,6 +13,7 @@ public class EnemyShipBehavior : MonoBehaviour
     private int LEFT = -1;
 
     public int ShipAILevel = 1;
+    public int ShipPower = 2;
     public GameObject drop;
 
     void Start()
@@ -59,42 +60,27 @@ public class EnemyShipBehavior : MonoBehaviour
 
     void explore()
     {
-     //dodge(transform.forward, 0);
+     
     }
-
-    /*    void dodge(Vector3 direction, int loop)
-        {
-            if (loop == 100)
-                return;
-            print(loop);
-            loop++;
-            ray.origin = transform.position;
-            ray.direction = (transform.forward + (direction * (loop/ 100)));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                if (hit.collider.tag == "Wall")
-                {
-                    if (loop % 2 == 1)
-                        dodge(transform.right, loop);
-                    else
-                        dodge(-transform.right, loop);
-                }
-                else
-                {
-                    print(loop);
-                    shipMovement.goForward(0.5f);
-                }
-            }
-        }*/
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Player")
         {
-            Instantiate<GameObject>(drop, transform.localPosition, transform.rotation);
-            Destroy(gameObject);    
+            DestroyShip();
         }
+    }
+
+    void DestroyShip()
+    {
+        int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
+
+        if (sizeDrop >= 1)
+        {
+            GameObject newDrop = Instantiate(drop, transform.localPosition, transform.rotation);
+            //newDrop.transform.localScale = new Vector3(sizeDrop, sizeDrop, sizeDrop);
+            newDrop.GetComponent<DropBehavior>().setValue(sizeDrop);
+        }
+        Destroy(gameObject);
     }
 }
