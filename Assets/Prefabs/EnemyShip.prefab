@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socialDistancing: 150
+  _target: {fileID: 0}
+  speed: 10
 --- !u!58 &1436265493449810929
 CircleCollider2D:
   m_ObjectHideFlags: 0

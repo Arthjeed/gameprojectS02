@@ -20,7 +20,7 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
-        follow.initSpeed(shipMovement.maxSpeed);
+        //player = GameObject.FindGameObjectsWithTag("player");
     }
 
     void Update()
@@ -32,9 +32,10 @@ public class EnemyShipBehavior : MonoBehaviour
 
     void checkDistance()
     {
+        print(Vector3.Distance(transform.position, player.position));
         if (Vector3.Distance(transform.position, player.position) < 500)
         {
-            if (Vector3.Distance(transform.position, player.position) < 150)
+            if (Vector3.Distance(transform.position, player.position) < follow.socialDistancing)
             {
                 switch (ShipAILevel)
                 {
@@ -51,7 +52,8 @@ public class EnemyShipBehavior : MonoBehaviour
             }
             else 
             {
-                GetComponent<FollowPlayer>().followTarget(player);
+                print("oui");
+                follow.followTarget(player);
                 shipMovement.reactorIgnit();
             }
         }
