@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class SpaceShip : MonoBehaviour
+public class SpaceShip : MonoBehaviour, IPunObservable
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
@@ -20,7 +21,23 @@ public class SpaceShip : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         transf = transform;
-        InstantiatePlayer();
+        // InstantiatePlayer();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(speed);
+            // stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            speed = (float)stream.ReceiveNext();
+            // transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
+        }
     }
 
     void InstantiatePlayer()

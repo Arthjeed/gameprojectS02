@@ -26,7 +26,7 @@ public class MovementPlayer : MonoBehaviour
 
     void Update()
     {
-        // if (PV.IsMine)
+        if (PV.IsMine || !PhotonNetwork.IsConnected)
             Move();
     }
 
@@ -67,15 +67,15 @@ public class MovementPlayer : MonoBehaviour
         StartCoroutine(PlayAnimation("Idle"));
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("Collision");
-        print(collision.gameObject.tag);
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     print("Collision");
+    //     print(collision.gameObject.tag);
+    // }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("trigger");
-        print(collision.gameObject.tag);
-    }
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     print("trigger");
+    //     print(collision.gameObject.tag);
+    // }
 }
