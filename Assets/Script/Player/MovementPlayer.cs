@@ -26,7 +26,7 @@ public class MovementPlayer : MonoBehaviour
 
     void Update()
     {
-        // if (PV.IsMine)
+        if (PV.IsMine || !PhotonNetwork.IsConnected)
             Move();
     }
 
@@ -37,6 +37,7 @@ public class MovementPlayer : MonoBehaviour
         Vector2 velocity = new Vector2(0, 0);
         if (xMove != 0 || yMove != 0)
         {
+            print("moving");
             Vector3 movement = new Vector3(xMove, 0.0f, yMove);
             Quaternion rotation = parentRot * Quaternion.LookRotation(movement);
             transform.rotation = rotation;
@@ -67,15 +68,15 @@ public class MovementPlayer : MonoBehaviour
         StartCoroutine(PlayAnimation("Idle"));
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("Collision");
-        print(collision.gameObject.tag);
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     print("Collision");
+    //     print(collision.gameObject.tag);
+    // }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("trigger");
-        print(collision.gameObject.tag);
-    }
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     print("trigger");
+    //     print(collision.gameObject.tag);
+    // }
 }
