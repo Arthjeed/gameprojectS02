@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7178556367715126631}
   - component: {fileID: 7178556367715126628}
   - component: {fileID: 7178556367715126629}
+  - component: {fileID: 4361946365437833209}
+  - component: {fileID: 4112761747040304695}
   m_Layer: 0
   m_Name: TurretHead
   m_TagString: Untagged
@@ -104,6 +106,43 @@ MonoBehaviour:
   maxAngle: 135
   projectile: {fileID: 4648287101403432050, guid: 0a313793950c50a48b56688f870f3211,
     type: 3}
+--- !u!114 &4361946365437833209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178556367715126635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 4112761747040304695}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4112761747040304695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178556367715126635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &7178556368255387324
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7178556368334822128}
   m_Layer: 0
-  m_Name: TurretComp1
+  m_Name: TurretComp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
