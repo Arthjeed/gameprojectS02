@@ -38,4 +38,17 @@ public class LaserBehavior : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("oui");
+        if (collision.collider.tag == "Player")
+        {
+            destroyLaser();
+        }
+        if (collision.collider.tag == "Shield")
+        {
+            destroyLaser();
+        }
+    }
 }

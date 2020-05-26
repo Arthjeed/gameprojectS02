@@ -32,7 +32,6 @@ public class EnemyShipBehavior : MonoBehaviour
 
     void checkDistance()
     {
-        print(Vector3.Distance(transform.position, player.position));
         if (Vector3.Distance(transform.position, player.position) < 500)
         {
             if (Vector3.Distance(transform.position, player.position) < follow.socialDistancing)
@@ -52,7 +51,6 @@ public class EnemyShipBehavior : MonoBehaviour
             }
             else 
             {
-                print("oui");
                 follow.followTarget(player);
                 shipMovement.reactorIgnit();
             }

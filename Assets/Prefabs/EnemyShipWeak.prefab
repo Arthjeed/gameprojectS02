@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1436265493449810929}
   - component: {fileID: 9088904077441907709}
   m_Layer: 0
-  m_Name: EnemyShip
+  m_Name: EnemyShipWeak
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialDistancing: 150
+  socialDistancing: 100
   _target: {fileID: 0}
   speed: 10
 --- !u!58 &1436265493449810929
@@ -211,6 +211,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6255327029141883101}
     m_Modifications:
+    - target: {fileID: 1765561626532066707, guid: b35c6e20a6af2aa48a5bc7f673ff56b9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dab0805ea226c354a918accf02651c33, type: 2}
     - target: {fileID: 1829501571243853731, guid: b35c6e20a6af2aa48a5bc7f673ff56b9,
         type: 3}
       propertyPath: m_Name

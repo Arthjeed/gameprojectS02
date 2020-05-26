@@ -9,11 +9,9 @@ public class FollowPlayer : MonoBehaviour
 
     public float speed;
     private float previousAngle;
-    private GameObject player;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("player")[0];
     }
 
     void Update()
