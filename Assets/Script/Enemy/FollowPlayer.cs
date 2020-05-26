@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
     private float speed;
     private float previousAngle;
 
+
     public void initSpeed(float _speed)
     {
         speed = _speed;

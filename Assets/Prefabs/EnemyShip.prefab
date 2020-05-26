@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 9088904077441907709}
   m_Layer: 0
   m_Name: EnemyShip
-  m_TagString: Enenmy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   ShipAILevel: 1
   ShipPower: 1
   drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
+  player: {fileID: 8493156111213215075, guid: 89beea0d51fd9c241a98c33915d5048b, type: 3}
 --- !u!1001 &1802832870555667379
 PrefabInstance:
   m_ObjectHideFlags: 0

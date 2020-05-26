@@ -7,7 +7,6 @@ public class EnemyShipBehavior : MonoBehaviour
     private EnemyShipMovement shipMovement;
     private FollowPlayer follow;
     private Ray ray;
-    private Transform player;
 
     private int RIGHT = 1;
     private int LEFT = -1;
@@ -15,11 +14,11 @@ public class EnemyShipBehavior : MonoBehaviour
     public int ShipAILevel = 1;
     public int ShipPower = 2;
     public GameObject drop;
+    public Transform player;
 
     void Start()
     {
         shipMovement = GetComponent<EnemyShipMovement>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         follow = GetComponent<FollowPlayer>();
         follow.initSpeed(shipMovement.maxSpeed);
     }
@@ -65,7 +64,7 @@ public class EnemyShipBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player")
+        if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
         {
             DestroyShip();
         }
