@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedText: {fileID: 1629802219}
-  multiplayerSceneIndex: 1
+  multiplayerSceneIndex: 2
   lobbyPanel: {fileID: 735909700}
   roomPanel: {fileID: 1255616055}
   startButton: {fileID: 1919229535}

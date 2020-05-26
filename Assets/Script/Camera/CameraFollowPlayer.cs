@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
@@ -19,11 +20,16 @@ public class CameraFollowPlayer : MonoBehaviour
     private SpaceShip spaceshipInfo;
     private Transform player;
     private Quaternion rotation;
+    private PhotonView PV;
     void Start()
     {
-        initPos = transform.position;
-        cam = GetComponent<Camera>();
         player = transform.parent.GetChild(0);
+        PV = player.GetComponent<PhotonView>();
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+            gameObject.SetActive(false);
+
+        cam = GetComponent<Camera>();
+        initPos = transform.position;
         interact = player.GetComponent<Interact>();
         spaceship = transform.root.gameObject;
         spaceshipPos = spaceship.transform;
@@ -40,6 +46,11 @@ public class CameraFollowPlayer : MonoBehaviour
     }
 
     void Update()
+    {
+        UpdateCamera();
+    }
+
+    void UpdateCamera()
     {
         if (Input.GetButtonDown("ZoomOut") && !interact.interacting)
             interact.SetView(false);
