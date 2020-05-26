@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Turret : MonoBehaviour
 {
@@ -19,9 +20,11 @@ public class Turret : MonoBehaviour
     private float rayon = 100;
     private Vector3 startPosition;
     private Quaternion parentRot;
+    private PhotonView PV;
 
     void Start()
     {
+        PV = GetComponent<PhotonView>();
         transf = transform;
         position = transf.position;
         localPosition = transf.localPosition;
@@ -34,40 +37,45 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        position = transf.position;
-        localPosition = transf.localPosition;
-        float x = Input.GetAxis("Horizontal");
-        if (x != 0)
-            RotateThruster(x);
-        ActivateTurret();
+        if (PV.IsMine || !PhotonNetwork.IsConnected)
+        {
+            RotateThruster();
+            ActivateTurret();
+        }
     }
 
-    void RotateThruster(float inputValue)
+    void RotateThruster()
     {
-        // Vector2 parentPos = parent.transform.position;
-        Vector2 parentPos = transf.localPosition;
-        float angleAbs = Mathf.Abs(angle);
-        // print(angle);
-        if (angleAbs >= minAngle && angleAbs <= maxAngle)
+        position = transf.position;
+        localPosition = transf.localPosition;
+        float inputValue = Input.GetAxis("Horizontal");
+        if (inputValue != 0)
         {
-            angle = angle + (inputValue * Time.deltaTime * rotateAngleSpeed);
-            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * rayon;
-            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * rayon;
-            transf.RotateAround(transf.position, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime);
-            // transf.localPosition = new Vector3(x, y);
-            // transf.localPosition = startPosition;
-        }
-        else
-        {
-            print(angle);
-            angleAbs = Mathf.Clamp(angleAbs, minAngle, maxAngle);
-            angle = angleAbs * Mathf.Sign(angle);
-            // float rayon = Vector2.Distance(position, parentPos);
-            // angleAbs = Mathf.Clamp(angleAbs, minAngle, maxAngle);
-            // float x = rayon * Mathf.Cos(Mathf.Sign(angle) * angleAbs * Mathf.Deg2Rad);
-            // float y = rayon * Mathf.Sin(Mathf.Sign(angle) * angleAbs * Mathf.Deg2Rad);
-            // print(new Vector2(x, y));
-            // transform.position = new Vector2(x, y);
+            // Vector2 parentPos = parent.transform.position;
+            Vector2 parentPos = transf.localPosition;
+            float angleAbs = Mathf.Abs(angle);
+            // print(angle);
+            if (angleAbs >= minAngle && angleAbs <= maxAngle)
+            {
+                angle = angle + (inputValue * Time.deltaTime * rotateAngleSpeed);
+                float x = Mathf.Cos(angle * Mathf.Deg2Rad) * rayon;
+                float y = Mathf.Sin(angle * Mathf.Deg2Rad) * rayon;
+                transf.RotateAround(transf.position, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime);
+                // transf.localPosition = new Vector3(x, y);
+                // transf.localPosition = startPosition;
+            }
+            else
+            {
+                print(angle);
+                angleAbs = Mathf.Clamp(angleAbs, minAngle, maxAngle);
+                angle = angleAbs * Mathf.Sign(angle);
+                // float rayon = Vector2.Distance(position, parentPos);
+                // angleAbs = Mathf.Clamp(angleAbs, minAngle, maxAngle);
+                // float x = rayon * Mathf.Cos(Mathf.Sign(angle) * angleAbs * Mathf.Deg2Rad);
+                // float y = rayon * Mathf.Sin(Mathf.Sign(angle) * angleAbs * Mathf.Deg2Rad);
+                // print(new Vector2(x, y));
+                // transform.position = new Vector2(x, y);
+            }
         }
     }
 
@@ -81,7 +89,7 @@ public class Turret : MonoBehaviour
             Quaternion rotation = transf.rotation * parentRot;
             // GameObject newProj = Instantiate(projectile, transf.position, Quaternion.LookRotation(transf.forward, Vector3.up));
             // GameObject newProj = Instantiate(projectile, transf.position, Quaternion.identity * Quaternion.LookRotation(transf.forward, Vector3.up));
-            GameObject newProj = Instantiate(projectile, transf.position, rotation);
+            GameObject newProj = PhotonNetwork.Instantiate("ProjectileTurret", transf.position, rotation);
             // newProj.transform.parent = gameObject.transform;
             newProj.GetComponent<Projectile>().SetDirection(transform.forward);
         }
