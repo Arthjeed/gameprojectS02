@@ -37,7 +37,6 @@ public class MovementPlayer : MonoBehaviour
         Vector2 velocity = new Vector2(0, 0);
         if (xMove != 0 || yMove != 0)
         {
-            print("moving");
             Vector3 movement = new Vector3(xMove, 0.0f, yMove);
             Quaternion rotation = parentRot * Quaternion.LookRotation(movement);
             transform.rotation = rotation;
