@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socialDistancing: 100
-  _target: {fileID: 0}
+  _target: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
   speed: 10
 --- !u!58 &1436265493449810929
 CircleCollider2D:
@@ -203,7 +203,7 @@ MonoBehaviour:
   ShipAILevel: 1
   ShipPower: 1
   drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
-  player: {fileID: 8493156111213215075, guid: 89beea0d51fd9c241a98c33915d5048b, type: 3}
+  player: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
 --- !u!1001 &1802832870555667379
 PrefabInstance:
   m_ObjectHideFlags: 0

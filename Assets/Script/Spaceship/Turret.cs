@@ -66,7 +66,7 @@ public class Turret : MonoBehaviour
             }
             else
             {
-                print(angle);
+                //print(angle);
                 angleAbs = Mathf.Clamp(angleAbs, minAngle, maxAngle);
                 angle = angleAbs * Mathf.Sign(angle);
                 // float rayon = Vector2.Distance(position, parentPos);

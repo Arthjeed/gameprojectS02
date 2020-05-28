@@ -48,7 +48,7 @@ public class ThrusterControls : MonoBehaviour
         Vector2 parentPos = parent.transform.position;
         // angle = Mathf.Atan2(parentPos.y - position.y, parentPos.x - position.x) * (180 / Mathf.PI);
         float angleAbs = Mathf.Abs(angle);
-        print(angle);
+        //print(angle);
         if (angleAbs >= minAngle && angleAbs <= maxAngle)
         {
             angle = angle + (inputValue * Time.deltaTime * rotateAngleSpeed);

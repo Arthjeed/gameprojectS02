@@ -7,9 +7,9 @@ TagManager:
   - Post
   - Obstacle
   - AllyProjectile
-  - Enenmy
   - Enemy
   - Shield
+  - PickUp
   layers:
   - Default
   - TransparentFX

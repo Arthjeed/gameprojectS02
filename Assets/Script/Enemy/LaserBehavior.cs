@@ -41,7 +41,6 @@ public class LaserBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("oui");
         if (collision.collider.tag == "Player")
         {
             destroyLaser();
