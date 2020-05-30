@@ -585,11 +585,21 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 933628463806289491, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
+        type: 3}
+      propertyPath: UraniumBar
+      value: 
+      objectReference: {fileID: 106398191}
     - target: {fileID: 1177705368106265932, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
         type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3211898293285461822, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
+        type: 3}
+      propertyPath: HealthBar
+      value: 
+      objectReference: {fileID: 916232480}
     - target: {fileID: 3229278643853294221, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
         type: 3}
       propertyPath: viewIdField
@@ -883,6 +893,16 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 332562838}
+    - target: {fileID: 6296073344510977073, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,
+        type: 3}
+      propertyPath: speedMissile
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296073344510977073, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,
+        type: 3}
+      propertyPath: reloadTime
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6297786397525833430, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,
         type: 3}
       propertyPath: m_Name
@@ -1011,6 +1031,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &916232480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8487947315570006266, guid: 8522e20f7943dcf49b8daddb47d530bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 413721589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1130293446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1149,11 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 332562838}
+    - target: {fileID: -4650336777203566274, guid: f9d62f963061d50469337e93005a8bc0,
+        type: 3}
+      propertyPath: socialDistancing
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 4209244496901553920, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: viewIdField
@@ -1137,7 +1168,7 @@ PrefabInstance:
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: speedMissile
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6252807758796319413, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
@@ -1147,17 +1178,17 @@ PrefabInstance:
     - target: {fileID: 6255327029141883101, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -171.5
+      value: -148.4
       objectReference: {fileID: 0}
     - target: {fileID: 6255327029141883101, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33.8
+      value: -82.8
       objectReference: {fileID: 0}
     - target: {fileID: 6255327029141883101, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6255327029141883101, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}

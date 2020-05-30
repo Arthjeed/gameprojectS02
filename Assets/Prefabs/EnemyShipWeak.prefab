@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialDistancing: 100
+  socialDistancing: 150
   _target: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
   speed: 20
 --- !u!58 &1436265493449810929
