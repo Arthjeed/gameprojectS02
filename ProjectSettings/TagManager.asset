@@ -7,6 +7,8 @@ TagManager:
   - Post
   - Obstacle
   - AllyProjectile
+  - Enenmy
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

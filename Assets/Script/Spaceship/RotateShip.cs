@@ -11,7 +11,6 @@ public class RotateShip : MonoBehaviour
         transf = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float x = Input.GetAxis("Horizontal");

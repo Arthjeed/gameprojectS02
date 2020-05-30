@@ -12,10 +12,11 @@ public class Shield : MonoBehaviour
     private SpaceShip ship;
     private float rayon = 100;
     private PhotonView PV;
+    private PhotonTransformView photonTrans;
 
     // private float angle = 0;
 
-    void Start()
+    void Awake()
     {
         PV = GetComponent<PhotonView>();
         position = transform.position;
@@ -23,13 +24,38 @@ public class Shield : MonoBehaviour
         parent = transform.parent.gameObject;
         ship = parent.GetComponent<SpaceShip>();
         rayon = Vector2.Distance(position, parent.transform.position);
-        this.enabled = false;
     }
+
+    void OnEnable()
+    {
+        PV.RPC("StartShield", RpcTarget.All);
+    }
+
+    void OnDisable()
+    {
+        PV.RPC("StopShield", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void StartShield()
+    {
+        if (!photonTrans)
+            photonTrans = GetComponent<PhotonTransformView>();
+        photonTrans.enabled = true;
+    }
+
+    [PunRPC]
+    void StopShield()
+    {
+        if (!photonTrans)
+            photonTrans = GetComponent<PhotonTransformView>();
+        photonTrans.enabled = false;
+    }
+
 
     void Update()
     {
-        if (PV.IsMine || !PhotonNetwork.IsConnected)
-            RotateShield();
+        RotateShield();
     }
 
     void RotateShield()
@@ -46,7 +72,7 @@ public class Shield : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("AllyProjectile"))
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
             PhotonNetwork.Destroy(collision.gameObject);
     }
 }
