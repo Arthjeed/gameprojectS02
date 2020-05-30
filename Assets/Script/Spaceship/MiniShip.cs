@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MiniShip : MonoBehaviour
 {
@@ -18,12 +19,14 @@ public class MiniShip : MonoBehaviour
     private Vector3 initPos;
     private Quaternion initRot;
     private Quaternion parentRot;
+    [SerializeField]
+    private GameObject cam;
+    private PhotonView PV;
+    private PhotonTransformView photonTrans;
 
     void Start()
     {
         transf = transform;
-        initPos = transf.position;
-        initRot = transf.rotation;
         parentRot = transform.root.rotation;
     }
 
@@ -36,8 +39,8 @@ public class MiniShip : MonoBehaviour
         Rotate();
         ActivateThruster();
         Shoot();
-        if (Input.GetButtonDown("Cancel"))
-            ReturnShip();
+        // if (Input.GetButtonDown("Cancel"))
+        //     ReturnShip();
     }
 
     void ActivateThruster()
@@ -106,23 +109,60 @@ public class MiniShip : MonoBehaviour
         if (Input.GetButtonDown("Action2"))
         {
             Quaternion rotation = transf.rotation * parentRot;
-            GameObject newProj = Instantiate(projectile, transf.position, rotation);
+            GameObject newProj = PhotonNetwork.Instantiate("ProjectileMiniShip", transf.position, rotation);
             newProj.GetComponent<Projectile>().SetDirection(transform.forward);
         }
     }
 
     public void ActivateShip()
     {
+        if (!PV)
+            PV = GetComponent<PhotonView>();
+        if (!photonTrans)
+            photonTrans = GetComponent<PhotonTransformView>();
+        photonTrans.enabled = true;
+        initPos = transform.localPosition;
+        initRot = transform.rotation;
         gameObject.transform.SetParent(null);
         gameObject.layer = 0;
+        cam.SetActive(true);
+        PV.RPC("Unparent", RpcTarget.Others);
     }
 
     public void ReturnShip()
     {
+        cam.SetActive(false);
+        photonTrans.enabled = false;
         gameObject.transform.SetParent(parent);
         gameObject.layer = wallLayer;
-        transf.position = initPos;
+        transf.localPosition = initPos;
         transf.rotation = initRot;
+        speed = 0;
+        PV.RPC("Parent", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    void Unparent()
+    {
+        Debug.Log("RPC Unparent");
+        if (!photonTrans)
+            photonTrans = GetComponent<PhotonTransformView>();
+        photonTrans.enabled = true;
+        initPos = transform.localPosition;
+        initRot = transform.rotation;
+        gameObject.transform.SetParent(null);
+        gameObject.layer = 0;
+    }
+
+    [PunRPC]
+    void Parent()
+    {
+        Debug.Log("RPC Parent");
+        photonTrans.enabled = false;
+        gameObject.transform.SetParent(parent);
+        gameObject.layer = wallLayer;
+        transform.localPosition = initPos;
+        transform.rotation = initRot;
         speed = 0;
     }
 }
