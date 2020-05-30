@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Interact : MonoBehaviour
 {
@@ -14,9 +15,13 @@ public class Interact : MonoBehaviour
     private Rigidbody2D rb;
     private Renderer[] rs;
     public bool interacting = false;
+    private PhotonView PV;
 
     void Start()
     {
+        PV = GetComponent<PhotonView>();
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+            this.enabled = false;
         comps = GetComponents<MonoBehaviour>();
         rb = GetComponent<Rigidbody2D>();
         rs = GetComponentsInChildren<Renderer>();
@@ -30,8 +35,9 @@ public class Interact : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && !interacting)
             {
-                print("interacting with " + interactObject.name);
-                interactObject.UsePost(gameObject);
+                if (interactObject.occupied)
+                    return;
+                interactObject.UsePost(gameObject.transform.parent.gameObject);
                 movement.PlayIdle();
                 SetView(false);
                 rb.velocity = new Vector2(0, 0);
@@ -39,8 +45,8 @@ public class Interact : MonoBehaviour
             }
             if (Input.GetButtonDown("Cancel") && interacting)
             {
-                foreach (MonoBehaviour c in comps)
-                    c.enabled = true;
+                // foreach (MonoBehaviour c in comps)
+                //     c.enabled = true;
                 SetView(true);
                 interactObject.GetOutPost();
                 interacting = false;
@@ -50,8 +56,9 @@ public class Interact : MonoBehaviour
 
     public void SetView(bool view)
     {
-        foreach (MonoBehaviour c in comps)
-            c.enabled = view;
+        // foreach (MonoBehaviour c in comps)
+        //     c.enabled = view;
+        movement.enabled = view;
         this.enabled = true;
         foreach (Renderer r in rs)
             r.enabled = view;

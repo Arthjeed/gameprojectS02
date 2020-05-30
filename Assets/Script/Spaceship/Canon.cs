@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Canon : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Canon : MonoBehaviour
         Vector2 position = transform.position;
         Vector2 dir = position - parentPos;
         Quaternion rotation = transform.rotation;// * parent.transform.rotation;
-        GameObject newProj = Instantiate(projectile, position, rotation);
+        GameObject newProj = PhotonNetwork.Instantiate("ProjectileCanon", position, rotation);
         newProj.GetComponent<Projectile>().SetDirection(dir);
     }
 }

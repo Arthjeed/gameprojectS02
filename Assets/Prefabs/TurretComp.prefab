@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7178556367715126628}
   - component: {fileID: 7178556367715126629}
   - component: {fileID: 4361946365437833209}
-  - component: {fileID: 4112761747040304695}
+  - component: {fileID: 8894006208823037429}
   m_Layer: 0
   m_Name: TurretHead
   m_TagString: Untagged
@@ -122,13 +122,13 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   ObservedComponents:
-  - {fileID: 4112761747040304695}
+  - {fileID: 8894006208823037429}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4112761747040304695
+--- !u!114 &8894006208823037429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
