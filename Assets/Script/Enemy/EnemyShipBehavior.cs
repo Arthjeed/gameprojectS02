@@ -66,6 +66,8 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
         {
+            print(collision.collider.tag);
+
             DestroyShip();
         }
     }

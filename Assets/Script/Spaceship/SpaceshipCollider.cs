@@ -13,8 +13,8 @@ public class SpaceshipCollider : MonoBehaviour
     {
         parent = transform.parent.gameObject;
         ship = parent.GetComponent<SpaceShip>();
-        uranium = parent.GetComponent<UraniumPickUp>();
-        health = parent.GetComponent<HealthManager>();
+        uranium = GetComponent<UraniumPickUp>();
+        health = GetComponent<HealthManager>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -29,7 +29,7 @@ public class SpaceshipCollider : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
-            health.changeHealth(collision.gameObject.GetComponent<LaserBehavior>().damage);
+            health.changeHealth(- collision.gameObject.GetComponent<LaserBehavior>().damage);
         }
     }
 }

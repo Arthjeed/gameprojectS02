@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -102,13 +103,14 @@ public class EnemyShipMovement : MonoBehaviour
         reloadState++;
         if (reloadState == reloadTime)
         {
-            //Vector3 _rotation = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-
-            //GameObject tmpPos = Instantiate(laser, laserSpawn.position, Quaternion.Euler(_rotation)) as GameObject;
-            GameObject tmpPos = Instantiate(laser, laserSpawn.position, transform.localRotation) as GameObject;
-            LaserBehavior newLaser = tmpPos.GetComponent<LaserBehavior>();
-            newLaser.setValue(damage, speedMissile);
             reloadState = 0;
+
+            Vector2 dir = new Vector2(transform.forward.x, transform.forward.y);
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, 360 - transform.eulerAngles.x + 90));// * parent.transform.rotation;
+            GameObject newProj = PhotonNetwork.Instantiate("ProjectileEnemy", laserSpawn.position, rotation);
+            newProj.GetComponent<LaserBehavior>().setDirection(dir);
+            newProj.GetComponent<LaserBehavior>().setValue(damage, speedMissile);
+
         }
     }
 }

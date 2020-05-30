@@ -98,7 +98,7 @@ PrefabInstance:
         type: 3}
       propertyPath: reactorLight
       value: 
-      objectReference: {fileID: 131573263559846165}
+      objectReference: {fileID: 5329434894803991744}
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: maxSpeed
@@ -112,12 +112,12 @@ PrefabInstance:
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: speedMissile
-      value: 0.7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: damage
-      value: 15
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6252807758796319413, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
@@ -198,9 +198,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 117186892437134435}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &131573263559846165 stripped
+--- !u!4 &5329434894803991744 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 32411353236927862, guid: f9d62f963061d50469337e93005a8bc0,
+  m_CorrespondingSourceObject: {fileID: 5212248165575614627, guid: f9d62f963061d50469337e93005a8bc0,
     type: 3}
   m_PrefabInstance: {fileID: 117186892437134435}
   m_PrefabAsset: {fileID: 0}

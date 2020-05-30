@@ -9,16 +9,19 @@ public class LaserBehavior : MonoBehaviour
     public float lifeTime;
 
     private float clock = 0;
+    private Transform dirSpawn;
+    private Vector2 dir;
     
     void Start()
     {
-
+        
     }
 
     void Update()
     {
         clock++;
-        transform.position += transform.forward * speed;
+        transform.position += new Vector3(dir.x * Time.deltaTime * speed, dir.y * Time.deltaTime * speed, 0);
+
         if (clock >= lifeTime)
             destroyLaser();
     }
@@ -29,9 +32,9 @@ public class LaserBehavior : MonoBehaviour
         speed = _speed;
     }
 
-    public void setDirection(Vector3 direction)
+    public void setDirection(Vector2 _dir)
     {
-        transform.rotation = Quaternion.LookRotation(direction);
+        dir = _dir;
     }
 
     public void destroyLaser()
@@ -43,7 +46,6 @@ public class LaserBehavior : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            print("ouill");
             destroyLaser();
         }
         if (collision.collider.tag == "Shield")
