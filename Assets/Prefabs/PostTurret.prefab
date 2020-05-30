@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8207661984319431835}
   - component: {fileID: 5709922326579610911}
   - component: {fileID: 5205162380112049339}
+  - component: {fileID: 7663008337563763121}
   m_Layer: 8
   m_Name: PostTurret
   m_TagString: Post
@@ -144,6 +145,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   post: {fileID: 0}
   type: 1
+--- !u!114 &7663008337563763121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024807036236555055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1526c330d1ea0a46ac7b3fa7137c58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 1152262717816729162}
 --- !u!1001 &7363891167159196818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,7 +183,7 @@ PrefabInstance:
     - target: {fileID: 7623579139522261701, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 7623579139522261701, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
         type: 3}
@@ -313,6 +327,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60d7c47c39fa60d4eafec29faa59f4d5, type: 3}
+--- !u!1 &1152262717816729162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7623579139522261720, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7363891167159196818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1152262717816729175 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7623579139522261701, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
