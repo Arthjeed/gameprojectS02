@@ -43,6 +43,7 @@ public class LaserBehavior : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
+            print("ouill");
             destroyLaser();
         }
         if (collision.collider.tag == "Shield")

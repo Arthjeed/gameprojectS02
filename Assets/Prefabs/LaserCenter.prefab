@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 460862796542819772}
   m_Layer: 0
   m_Name: Light_Shaft_Base
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463115311080969326}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460543535265826100}
   m_Father: {fileID: 466899736883403164}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!1 &463154599358109240
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 460543535265826100}
   m_Layer: 0
   m_Name: Light_Shaft_Manip
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 543820379893126200}
   m_Layer: 0
   m_Name: SM_LightRay_Cube
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 463605210899601132}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -0.91469884, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.35556}
   m_Children: []
   m_Father: {fileID: 466899736883403164}
   m_RootOrder: 1
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 466899736883403164}
   m_Layer: 0
   m_Name: FX_LightRayCube
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 463617930933244716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7625, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.7625, y: 0.57399, z: 2.2746}
   m_Children:
   - {fileID: 460862796542819772}
   - {fileID: 466881479290471280}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 460630056917096438}
   m_Layer: 0
   m_Name: Null
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,10 +218,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1893373027887111635}
   - component: {fileID: 2012144876461325581}
-  - component: {fileID: -5617124687843515287}
+  - component: {fileID: 2215900135565849168}
   m_Layer: 0
   m_Name: LaserCenter
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,14 +233,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5622359367153464744}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.019323947, y: -0, z: -0, w: 0.99981326}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8762284, y: 1.0733798, z: 1.873727}
+  m_LocalScale: {x: 0.8762284, y: 1.0733798, z: 0.54017675}
   m_Children:
   - {fileID: 466899736883403164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.214, y: 0, z: 0}
 --- !u!114 &2012144876461325581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   damage: 10
   speed: 0.5
   lifeTime: 1000
---- !u!61 &-5617124687843515287
+--- !u!61 &2215900135565849168
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,7 +269,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -280,5 +280,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

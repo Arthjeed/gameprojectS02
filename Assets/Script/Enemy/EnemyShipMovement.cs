@@ -14,8 +14,6 @@ public class EnemyShipMovement : MonoBehaviour
     public Transform laserSpawn;
 
     private static readonly int TIMEREACTOR = 50;
-    private static readonly Vector3 RIGHT = new Vector3(0, 0, 1);
-    private static readonly Vector3 LEFT = new Vector3(0, 0, -1);
 
     private float reactorState = TIMEREACTOR;
     private Vector3 reactorDown = new Vector3(0.2f, 0.2f, 1f);
@@ -104,6 +102,9 @@ public class EnemyShipMovement : MonoBehaviour
         reloadState++;
         if (reloadState == reloadTime)
         {
+            //Vector3 _rotation = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+
+            //GameObject tmpPos = Instantiate(laser, laserSpawn.position, Quaternion.Euler(_rotation)) as GameObject;
             GameObject tmpPos = Instantiate(laser, laserSpawn.position, transform.localRotation) as GameObject;
             LaserBehavior newLaser = tmpPos.GetComponent<LaserBehavior>();
             newLaser.setValue(damage, speedMissile);

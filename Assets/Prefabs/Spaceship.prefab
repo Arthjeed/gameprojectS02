@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 1177705368106265904}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1322,6 +1322,7 @@ GameObject:
   - component: {fileID: 5633151359069485217}
   - component: {fileID: 5633151359069485246}
   - component: {fileID: 7151087882164918876}
+  - component: {fileID: 5524824101949175465}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -1506,7 +1507,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxUranium: 5
-  currentUranium: 0
+  UraniumBar: {fileID: 8487947315570006266, guid: de7a0aaaca65f86458a01cb91f38e809,
+    type: 3}
+--- !u!114 &5524824101949175465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364692419352857885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c432dae220863f4d8fd7f8cf9d98893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  HealthBar: {fileID: 8487947315570006266, guid: 8522e20f7943dcf49b8daddb47d530bc,
+    type: 3}
 --- !u!1 &5364692420217108049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,15 +4137,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41eac07628561874e8fd3c1649c10b47, type: 3}
---- !u!4 &1173284044204206045 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4604023365360802, guid: 41eac07628561874e8fd3c1649c10b47,
-    type: 3}
-  m_PrefabInstance: {fileID: 1177705366601218943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179090298880789011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1394918349091180, guid: 41eac07628561874e8fd3c1649c10b47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177705366601218943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1173284044204206045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4604023365360802, guid: 41eac07628561874e8fd3c1649c10b47,
     type: 3}
   m_PrefabInstance: {fileID: 1177705366601218943}
   m_PrefabAsset: {fileID: 0}
@@ -5712,15 +5729,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dc829d9e55d2434893713151a513eb8, type: 3}
---- !u!1 &8342731604190394130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7178556367715126635, guid: 8dc829d9e55d2434893713151a513eb8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1177705367064689273}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8342731603637772425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7178556368334822128, guid: 8dc829d9e55d2434893713151a513eb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177705367064689273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8342731604190394130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7178556367715126635, guid: 8dc829d9e55d2434893713151a513eb8,
     type: 3}
   m_PrefabInstance: {fileID: 1177705367064689273}
   m_PrefabAsset: {fileID: 0}
@@ -7893,15 +7910,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77200928bb40da847a49bb3cb2b3b019, type: 3}
---- !u!1 &1179158242600121275 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1472135704922342, guid: 77200928bb40da847a49bb3cb2b3b019,
-    type: 3}
-  m_PrefabInstance: {fileID: 1177705367869045597}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1173591230584308699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4894799469115526, guid: 77200928bb40da847a49bb3cb2b3b019,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177705367869045597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1179158242600121275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1472135704922342, guid: 77200928bb40da847a49bb3cb2b3b019,
     type: 3}
   m_PrefabInstance: {fileID: 1177705367869045597}
   m_PrefabAsset: {fileID: 0}
