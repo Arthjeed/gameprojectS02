@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Shield
   - PickUp
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
