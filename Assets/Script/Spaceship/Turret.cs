@@ -20,11 +20,11 @@ public class Turret : MonoBehaviour
     private float rayon = 100;
     private Vector3 startPosition;
     private Quaternion parentRot;
-    private PhotonView PV;
+    // private PhotonView PV;
 
     void Start()
     {
-        PV = GetComponent<PhotonView>();
+        // PV = GetComponent<PhotonView>();
         transf = transform;
         position = transf.position;
         localPosition = transf.localPosition;
@@ -37,11 +37,8 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        if (PV.IsMine || !PhotonNetwork.IsConnected)
-        {
-            RotateThruster();
-            ActivateTurret();
-        }
+        RotateThruster();
+        ActivateTurret();
     }
 
     void RotateThruster()

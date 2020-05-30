@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Post : MonoBehaviour
 {
     public GameObject post;
     private GameObject postPlayer;
+    private GameObject playerCam;
+    private PhotonView PV;
+    public bool occupied = false;
 
     public enum postType
     {
@@ -14,15 +18,14 @@ public class Post : MonoBehaviour
 
     public Post.postType type;
 
-    void Start()
+    void Awake()
     {
-
+        PV = GetComponent<PhotonView>();
     }
 
     public void GetOutPost() {
         if (postPlayer)
         {
-            postPlayer = null;
             switch (type)
             {
                 case postType.Canon:
@@ -46,12 +49,16 @@ public class Post : MonoBehaviour
                     shield.enabled = false;
                     break;
                 case postType.MiniShip:
+                    postPlayer.transform.GetChild(1).gameObject.SetActive(true);
                     MiniShip ship = post.GetComponent<MiniShip>();
+                    ship.ReturnShip();
                     ship.enabled = false;
                     break;
                 default:
                     break;
             }
+            postPlayer = null;
+            PV.RPC("FreePost", RpcTarget.Others);
         }
     }
 
@@ -60,6 +67,16 @@ public class Post : MonoBehaviour
         if (!postPlayer)
         {
             postPlayer = player;
+            PV.RPC("OccupyPost", RpcTarget.Others);
+            PhotonView playerPV = postPlayer.GetComponentInChildren<PhotonView>();
+            PhotonView postPV = post.GetComponent<PhotonView>();
+            PhotonView[] photonViews = post.GetComponents<PhotonView>();
+            // foreach (PhotonView view in photonViews)
+            // {
+            //     print(view.ViewID);
+            // }
+            if (postPV)
+                postPV.RequestOwnership();
             switch (type)
             {
                 case postType.Canon:
@@ -83,9 +100,10 @@ public class Post : MonoBehaviour
                     shield.enabled = true;
                     break;
                 case postType.MiniShip:
+                    postPlayer.transform.GetChild(1).gameObject.SetActive(false);
                     MiniShip ship = post.GetComponent<MiniShip>();
-                    ship.ActivateShip();
                     ship.enabled = true;
+                    ship.ActivateShip();
                     break;
                 default:
                     break;
@@ -93,4 +111,17 @@ public class Post : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    void FreePost()
+    {
+        print("Free");
+        occupied = false;
+    }
+
+    [PunRPC]
+    void OccupyPost()
+    {
+        print("Occupied");
+        occupied = true;
+    }
 }

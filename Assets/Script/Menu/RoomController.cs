@@ -131,7 +131,6 @@ public class RoomController : MonoBehaviourPunCallbacks {
     // Update is called once per frame
     void Update () {
         ready = (int) PhotonNetwork.CurrentRoom.CustomProperties["ready"];
-        Debug.Log (ready);
         if (ready >= PhotonNetwork.PlayerList.Length && !playerReady && PhotonNetwork.IsMasterClient) {
             startButton.SetActive (true);
         } else if (!(ready == PhotonNetwork.PlayerList.Length) && !playerReady && PhotonNetwork.IsMasterClient) {

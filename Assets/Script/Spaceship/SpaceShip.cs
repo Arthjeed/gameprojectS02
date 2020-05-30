@@ -29,14 +29,14 @@ public class SpaceShip : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(speed);
-            // stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
+            stream.SendNext(transform.position);
+            // stream.SendNext(transform.rotation);
         }
         else
         {
             speed = (float)stream.ReceiveNext();
-            // transform.position = (Vector3)stream.ReceiveNext();
-            transform.rotation = (Quaternion)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
+            // transform.rotation = (Quaternion)stream.ReceiveNext();
         }
     }
 

@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ThrusterControls : MonoBehaviour
+public class ThrusterControls : MonoBehaviour, IPunObservable
 {
-    // Start is called before the first frame update
-    public string slideButton = "Move";
     public float rotateAngleSpeed = 10;
-    public Vector2 thrusterPower = new Vector2(0.1f, 0.1f);
     public float minAngle = 15;
     public float maxAngle = 165;
     private Vector2 position;
@@ -16,13 +14,11 @@ public class ThrusterControls : MonoBehaviour
     private SpaceShip ship;
     private float angle = 90;
     private float rayon = 100;
-    private bool buttonIsDown = true;
-    private KeyCode interactKey = KeyCode.E;
     private ParticleSystem particle;
 
     // private float angle = 0;
 
-    void Start()
+    void Awake()
     {
         position = transform.position;
         localPosition = transform.localPosition;
@@ -31,7 +27,21 @@ public class ThrusterControls : MonoBehaviour
         rayon = Vector2.Distance(position, parent.transform.position);
         particle = GetComponent<ParticleSystem>();
         particle.Stop();
-        this.enabled = false;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(ship.transform.position);
+            stream.SendNext(ship.speed);
+        }
+        else
+        {
+            ship.transform.position = (Vector3)stream.ReceiveNext();
+            ship.speed = (float)stream.ReceiveNext();
+
+        }
     }
 
     void Update()
@@ -82,23 +92,5 @@ public class ThrusterControls : MonoBehaviour
             particle.Stop();
         if (Input.GetButton("Action1"))
             ship.SlowDown();
-        // if (Input.GetButtonDown("Jump"))
-        // {
-        //     // Vector2 parentPos = parent.transform.position;
-        //     // Vector2 dir = parentPos - position;
-        //     // Vector2 power = new Vector2(dir.x * thrusterPower.x, dir.y * thrusterPower.y);
-        //     // Debug.Log(dir);
-        //     // ship.ApplyVelocity(power);
-        //     buttonIsDown = true;
-        // }
-        // if (Input.GetButtonUp("Jump"))
-        //     buttonIsDown = false;
-        
-        // if (buttonIsDown)
-        // {
-        //     // Vector2 power = new Vector2(0, 0);
-        //     // ship.ApplyVelocity(power);
-        //     ship.Accelerate();
-        // }
     }
 }
