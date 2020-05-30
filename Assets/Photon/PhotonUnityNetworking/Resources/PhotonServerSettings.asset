@@ -33,13 +33,13 @@ MonoBehaviour:
   - DestroyRpc
   - DestroySpaceship
   - Fire
-  - RespawnSpaceship
-  - RPC_AddCharacter
-  - Parent
-  - Unparent
-  - StartShield
-  - StopShield
   - FreePost
   - OccupyPost
+  - Parent
+  - RespawnSpaceship
+  - RPC_AddCharacter
+  - StartShield
+  - StopShield
+  - Unparent
   DisableAutoOpenWizard: 1
   ShowSettings: 0
