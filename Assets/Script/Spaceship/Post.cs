@@ -70,7 +70,7 @@ public class Post : MonoBehaviour
             PV.RPC("OccupyPost", RpcTarget.Others);
             PhotonView playerPV = postPlayer.GetComponentInChildren<PhotonView>();
             PhotonView postPV = post.GetComponent<PhotonView>();
-            PhotonView[] photonViews = post.GetComponents<PhotonView>();
+            // PhotonView[] photonViews = post.GetComponents<PhotonView>();
             // foreach (PhotonView view in photonViews)
             // {
             //     print(view.ViewID);
@@ -114,14 +114,12 @@ public class Post : MonoBehaviour
     [PunRPC]
     void FreePost()
     {
-        print("Free");
         occupied = false;
     }
 
     [PunRPC]
     void OccupyPost()
     {
-        print("Occupied");
         occupied = true;
     }
 }

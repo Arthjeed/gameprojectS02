@@ -20,14 +20,15 @@ public class MiniShip : MonoBehaviour
     private Quaternion initRot;
     private Quaternion parentRot;
     [SerializeField]
-    private GameObject cam;
+    private Camera cam;
     private PhotonView PV;
     private PhotonTransformView photonTrans;
 
-    void Start()
+    void Awake()
     {
         transf = transform;
-        parentRot = transform.root.rotation;
+        parentRot = transform.rotation;
+        // parentRot = transform.root.rotation;
     }
 
     void Update()
@@ -98,8 +99,6 @@ public class MiniShip : MonoBehaviour
         {
             Vector3 movement = new Vector3(-xMove, 0.0f, -yMove);
             Quaternion rotation = parentRot * Quaternion.LookRotation(movement);
-            // Quaternion rotation = Quaternion.LookRotation(movement);
-            // rotation *= Quaternion.Euler(0, 90, 0);
             transform.rotation = rotation;
         }
     }
@@ -125,13 +124,13 @@ public class MiniShip : MonoBehaviour
         initRot = transform.rotation;
         gameObject.transform.SetParent(null);
         gameObject.layer = 0;
-        cam.SetActive(true);
+        cam.enabled = true;
         PV.RPC("Unparent", RpcTarget.Others);
     }
 
     public void ReturnShip()
     {
-        cam.SetActive(false);
+        cam.enabled = false;
         photonTrans.enabled = false;
         gameObject.transform.SetParent(parent);
         gameObject.layer = wallLayer;
@@ -144,7 +143,6 @@ public class MiniShip : MonoBehaviour
     [PunRPC]
     void Unparent()
     {
-        Debug.Log("RPC Unparent");
         if (!photonTrans)
             photonTrans = GetComponent<PhotonTransformView>();
         photonTrans.enabled = true;
@@ -157,7 +155,6 @@ public class MiniShip : MonoBehaviour
     [PunRPC]
     void Parent()
     {
-        Debug.Log("RPC Parent");
         photonTrans.enabled = false;
         gameObject.transform.SetParent(parent);
         gameObject.layer = wallLayer;
