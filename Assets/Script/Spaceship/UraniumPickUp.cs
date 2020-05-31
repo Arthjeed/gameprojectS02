@@ -10,7 +10,10 @@ public class UraniumPickUp : MonoBehaviour
 
     private float currentUranium = 0;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        UraniumBar.GetComponent<Slider>().value = currentUranium;
+    }
     public void addUranium(float amount)
     {
         currentUranium += amount;

@@ -883,6 +883,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 332562838}
+    - target: {fileID: 2959276370297174467, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,
+        type: 3}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4308371760528073571, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,
         type: 3}
       propertyPath: viewIdField
@@ -1144,6 +1149,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6291208766318107232, guid: f9d62f963061d50469337e93005a8bc0,
+        type: 3}
+      propertyPath: viewIdField
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: -4650336777203566274, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: _target
