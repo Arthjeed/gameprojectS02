@@ -24,7 +24,8 @@ public class DropBehavior : MonoBehaviour
 
     public void setValue(float _value)
     {
-        transform.localScale = new Vector3(_value, _value, _value);
+        float nscale = 1 + _value / 3;
+        transform.localScale = new Vector3(nscale, nscale, nscale);
         value = _value;
     }
 }

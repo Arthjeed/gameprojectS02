@@ -125,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6252807758796319413}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a966e5072bb24a43ad854b3a4548518, type: 3}
   m_Name: 
@@ -206,6 +206,8 @@ MonoBehaviour:
   ShipPower: 1
   drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
   player: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
+  deathAnimation: {fileID: 1456060657882760, guid: 7e6767444726b234c868079dec6d7ae0,
+    type: 3}
 --- !u!114 &-6291208766318107232
 MonoBehaviour:
   m_ObjectHideFlags: 0

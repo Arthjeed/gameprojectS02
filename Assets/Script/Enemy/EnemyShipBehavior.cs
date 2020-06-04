@@ -7,6 +7,7 @@ public class EnemyShipBehavior : MonoBehaviour
     private EnemyShipMovement shipMovement;
     private FollowPlayer follow;
     private Ray ray;
+    private Transform player;
 
     private int RIGHT = 1;
     private int LEFT = -1;
@@ -14,12 +15,13 @@ public class EnemyShipBehavior : MonoBehaviour
     public int ShipAILevel = 1;
     public int ShipPower = 2;
     public GameObject drop;
-    public Transform player;
+    public GameObject deathAnimation;
 
     void Start()
     {
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         //player = GameObject.FindGameObjectsWithTag("player");
     }
 
@@ -66,8 +68,6 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
         {
-            print(collision.collider.tag);
-
             DestroyShip();
         }
     }
@@ -75,7 +75,9 @@ public class EnemyShipBehavior : MonoBehaviour
     void DestroyShip()
     {
         int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
-
+        print(sizeDrop);
+        GameObject animation = Instantiate(deathAnimation, transform.localPosition, Random.rotation);
+        animation.transform.localScale = new Vector3(10, 10, 10);
         if (sizeDrop >= 1)
         {
             GameObject newDrop = Instantiate(drop, transform.localPosition, transform.rotation);
