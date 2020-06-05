@@ -43,6 +43,7 @@ public class EnemyShipBehavior : MonoBehaviour
                 {
                     case 1:
                         shipMovement.shoot();
+                        follow.followTarget(player);
                         break;
                     case 2:
                         shipMovement.shoot();
