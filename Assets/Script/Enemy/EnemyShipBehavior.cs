@@ -14,7 +14,8 @@ public class EnemyShipBehavior : MonoBehaviour
 
     public int ShipAILevel = 1;
     public int ShipPower = 2;
-    public GameObject drop;
+    public GameObject dropUranium;
+    public GameObject dropHealth;
     public GameObject deathAnimation;
 
     void Start()
@@ -75,13 +76,17 @@ public class EnemyShipBehavior : MonoBehaviour
     void DestroyShip()
     {
         int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
-        print(sizeDrop);
+        int typeDrop = Random.Range(1, 3);
+        print(typeDrop);
+
         GameObject animation = Instantiate(deathAnimation, transform.localPosition, Random.rotation);
         animation.transform.localScale = new Vector3(10, 10, 10);
-        if (sizeDrop >= 1)
+        if (sizeDrop >= 1 && typeDrop != 0)
         {
+            GameObject drop = dropUranium;
+            if (typeDrop == 2)
+                drop = dropHealth;
             GameObject newDrop = Instantiate(drop, transform.localPosition, transform.rotation);
-            //newDrop.transform.localScale = new Vector3(sizeDrop, sizeDrop, sizeDrop);
             newDrop.GetComponent<DropBehavior>().setValue(sizeDrop);
         }
         Destroy(gameObject);

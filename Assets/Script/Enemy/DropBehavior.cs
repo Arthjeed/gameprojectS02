@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class DropBehavior : MonoBehaviour
 {
+    public enum TypeDrop
+    {
+        Uranium,
+        Health
+    }
+
     Vector3 rotationDirection = new Vector3(0, 0, 0);
     private float speedRotation = 1.0f;
 
     public float value;
+    public TypeDrop type;
 
     void Start()
     {
