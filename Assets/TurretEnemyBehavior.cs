@@ -5,6 +5,13 @@ using UnityEngine;
 public class TurretEnemyBehavior : MonoBehaviour
 {
     public Transform pivot;
+    public GameObject AsteroideParent;
+
+    public int ShipAILevel = 1;
+    public int ShipPower = 2;
+    public GameObject dropUranium;
+    public GameObject dropHealth;
+    public GameObject deathAnimation;
 
     private Transform player;
     private Transform tmpLook;
@@ -34,7 +41,7 @@ public class TurretEnemyBehavior : MonoBehaviour
         Vector2 tmp = new Vector2(player.localPosition.x, player.localPosition.y);
         float angle = AngleTo(new Vector2(pivot.transform.position.x, pivot.transform.position.y), tmp);
 
-        print(angle);
+        //print(angle);
         //        float rot_z = Mathf.Atan2(player.position.y, player.position.x) * Mathf.Rad2Deg;
         pivot.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
         /*        if (player.transform.position.x < pivot.transform.position.x)
@@ -44,4 +51,23 @@ public class TurretEnemyBehavior : MonoBehaviour
 
     }
 
+
+    public void DestroyShip()
+    {
+        int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
+        int typeDrop = Random.Range(1, 3);
+        print(typeDrop);
+
+        GameObject animation = Instantiate(deathAnimation, transform.localPosition, Random.rotation);
+        animation.transform.localScale = new Vector3(10, 10, 10);
+        if (sizeDrop >= 1 && typeDrop != 0)
+        {
+            GameObject drop = dropUranium;
+            if (typeDrop == 2)
+                drop = dropHealth;
+            GameObject newDrop = Instantiate(drop, transform.localPosition, transform.rotation);
+            newDrop.GetComponent<DropBehavior>().setValue(sizeDrop);
+        }
+        Destroy(AsteroideParent);
+    }
 }

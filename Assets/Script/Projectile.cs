@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private Vector2 dir;
     public float projectileSpeed = 5;
+    public float projectileDamage = 5;
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -21,5 +22,13 @@ public class Projectile : MonoBehaviour
     {
         dir = direction;
         dir.Normalize();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print(collision.collider.tag);
+        if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Enemy")
+            Destroy(gameObject);
+
     }
 }
