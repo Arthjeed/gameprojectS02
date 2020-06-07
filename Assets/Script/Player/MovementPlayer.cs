@@ -42,16 +42,15 @@ public class MovementPlayer : MonoBehaviour
             transform.rotation = rotation;
             velocity.x = xMove * speed * Time.deltaTime;
             velocity.y = yMove * speed * Time.deltaTime;
-            rb.AddForce(velocity * speed);
-            // transform.position += new Vector3(xMove * Time.deltaTime * speed, yMove * Time.deltaTime * speed, 0);
+            rb.velocity = velocity;
             StartCoroutine(PlayAnimation("Run"));
         }
-        else// if (!animationIsPlaying)
+        else
+        {
+            rb.velocity = Vector2.zero;
+            rb.Sleep();
             StartCoroutine(PlayAnimation("Idle"));
-        // velocity += rbParent.velocity;
-        // print(rbParent.velocity);
-        // rb.velocity = velocity * Time.deltaTime * speed;
-        // rb.AddForce(velocity * speed);
+        }
     }
 
     private IEnumerator PlayAnimation(string animName)
@@ -66,16 +65,4 @@ public class MovementPlayer : MonoBehaviour
     public void PlayIdle() {
         StartCoroutine(PlayAnimation("Idle"));
     }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     print("Collision");
-    //     print(collision.gameObject.tag);
-    // }
-
-    // void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     print("trigger");
-    //     print(collision.gameObject.tag);
-    // }
 }

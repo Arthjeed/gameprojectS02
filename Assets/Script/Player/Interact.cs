@@ -69,14 +69,19 @@ public class Interact : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Post"))
         {
-            Post post = collision.gameObject.GetComponent<Post>();
-            interactObject = post;
+            interactObject = collision.gameObject.GetComponent<Post>();
+            if (PV.IsMine)
+                interactObject.CanUse();
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         if (!interacting)
+        {
+            if (PV.IsMine)
+                interactObject.CantUse();
             interactObject = null;
+        }
     }
 }
