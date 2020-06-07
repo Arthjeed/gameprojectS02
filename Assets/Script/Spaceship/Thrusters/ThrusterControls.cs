@@ -15,6 +15,10 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
     private float angle = 90;
     private float rayon = 100;
     private ParticleSystem particle;
+    private ParticleSystem.MainModule psmain;
+    private float startSize = 1.3f;
+    private float minSize = 0.5f;
+
 
     // private float angle = 0;
 
@@ -26,7 +30,9 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         ship = parent.GetComponent<SpaceShip>();
         rayon = Vector2.Distance(position, parent.transform.position);
         particle = GetComponent<ParticleSystem>();
-        particle.Stop();
+        psmain = particle.main;
+        psmain.startSize = minSize;
+        // particle.Stop();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -40,7 +46,6 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         {
             ship.transform.position = (Vector3)stream.ReceiveNext();
             ship.speed = (float)stream.ReceiveNext();
-
         }
     }
 
@@ -52,6 +57,26 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         // if (x != 0)
         //     RotateThruster(x);
         ActivateThruster();
+    }
+
+    public void CheckParticles()
+    {
+        float size = ship.speed * startSize;
+        if (ship.speed * startSize < minSize)
+            size = minSize;
+        psmain.startSize = size;
+    }
+
+    public void PlayParticle()
+    {
+        if (particle.isStopped)
+            particle.Play();
+    }
+
+    public void StopParticle()
+    {
+        if (particle.isPlaying)
+            particle.Stop();
     }
 
     void RotateThruster(float inputValue) {
@@ -85,11 +110,7 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         if (Input.GetButton("Jump"))
         {
             ship.Accelerate();
-            if (particle.isStopped)
-                particle.Play();
         }
-        if (Input.GetButtonUp("Jump"))
-            particle.Stop();
         if (Input.GetButton("Action1"))
             ship.SlowDown();
     }
