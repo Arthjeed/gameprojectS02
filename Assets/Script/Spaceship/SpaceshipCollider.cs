@@ -8,6 +8,7 @@ public class SpaceshipCollider : MonoBehaviour
     private SpaceShip ship;
     private UraniumPickUp uranium;
     private HealthManager health;
+    private DropBehavior drop;
 
     void Start()
     {
@@ -23,7 +24,11 @@ public class SpaceshipCollider : MonoBehaviour
             ship.Crash();
         if (collision.gameObject.CompareTag("PickUp"))
         {
-            uranium.addUranium(collision.gameObject.GetComponent<DropBehavior>().value);
+            drop = collision.gameObject.GetComponent<DropBehavior>();
+            if (drop.type == DropBehavior.TypeDrop.Health)
+                health.changeHealth(collision.gameObject.GetComponent<DropBehavior>().value * 2);
+            if (drop.type == DropBehavior.TypeDrop.Uranium)
+                uranium.addUranium(collision.gameObject.GetComponent<DropBehavior>().value);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("EnemyProjectile"))

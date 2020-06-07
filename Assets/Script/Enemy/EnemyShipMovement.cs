@@ -19,6 +19,7 @@ public class EnemyShipMovement : MonoBehaviour
     private float reactorState = TIMEREACTOR;
     private Vector3 reactorDown = new Vector3(0.2f, 0.2f, 1f);
     private Vector3 reactorUp = new Vector3(1, 1, 1);
+    private GameObject player;
 
     private int reloadState = 0;
     private int count = 0;
@@ -28,11 +29,11 @@ public class EnemyShipMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-
     }
 
     public void goForward(float speed)
@@ -104,9 +105,14 @@ public class EnemyShipMovement : MonoBehaviour
         if (reloadState == reloadTime)
         {
             reloadState = 0;
-
+            Quaternion rotation;
             Vector2 dir = new Vector2(transform.forward.x, transform.forward.y);
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, 360 - transform.eulerAngles.x + 90));// * parent.transform.rotation;
+
+            if (player.transform.localPosition.x < transform.localPosition.x)
+                rotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.x + 270));
+            else
+                rotation = Quaternion.Euler(new Vector3(0, 0, 360 - transform.eulerAngles.x + 90));
+
             GameObject newProj = PhotonNetwork.Instantiate("ProjectileEnemy", laserSpawn.position, rotation);
             newProj.GetComponent<LaserBehavior>().setDirection(dir);
             newProj.GetComponent<LaserBehavior>().setValue(damage, speedMissile);

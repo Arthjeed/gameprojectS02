@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipAILevel: 2
   ShipPower: 4
-  drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
-  player: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
+  dropUranium: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a,
+    type: 3}
+  dropHealth: {fileID: 7624656741136397555, guid: 57bbde095f153f947a2d0a0dd6550435,
+    type: 3}
+  deathAnimation: {fileID: 1377424659350760, guid: f1de78bcb509f9f4f81dd92becbf341c,
+    type: 3}
 --- !u!1001 &117186892437134435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6251121089497135186, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
