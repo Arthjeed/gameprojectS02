@@ -18,9 +18,8 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
     private ParticleSystem.MainModule psmain;
     private float startSize = 1.3f;
     private float minSize = 0.5f;
-
-
-    // private float angle = 0;
+    [SerializeField]
+    private ParticleSystem indicator;
 
     void Awake()
     {
@@ -33,6 +32,18 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         psmain = particle.main;
         psmain.startSize = minSize;
         // particle.Stop();
+    }
+
+    void OnEnable()
+    {
+        indicator.Play();
+        StartCoroutine(StopParticleSystem(indicator, 1.5f));
+    }
+
+    IEnumerator StopParticleSystem(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
