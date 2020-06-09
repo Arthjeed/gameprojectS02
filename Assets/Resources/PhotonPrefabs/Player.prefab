@@ -5517,7 +5517,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b30364844af600e45ab8060530fc266c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -5586,7 +5586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f5d5518c8d9de43b6ec9000148fe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 2000
 --- !u!114 &1660481470971551606
 MonoBehaviour:
   m_ObjectHideFlags: 0

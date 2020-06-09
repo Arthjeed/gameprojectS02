@@ -15,8 +15,11 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
     private float angle = 90;
     private float rayon = 100;
     private ParticleSystem particle;
-
-    // private float angle = 0;
+    private ParticleSystem.MainModule psmain;
+    private float startSize = 1.3f;
+    private float minSize = 0.5f;
+    [SerializeField]
+    private ParticleSystem indicator;
 
     void Awake()
     {
@@ -26,7 +29,21 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         ship = parent.GetComponent<SpaceShip>();
         rayon = Vector2.Distance(position, parent.transform.position);
         particle = GetComponent<ParticleSystem>();
-        particle.Stop();
+        psmain = particle.main;
+        psmain.startSize = minSize;
+        // particle.Stop();
+    }
+
+    void OnEnable()
+    {
+        indicator.Play();
+        StartCoroutine(StopParticleSystem(indicator, 1.5f));
+    }
+
+    IEnumerator StopParticleSystem(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -40,7 +57,6 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         {
             ship.transform.position = (Vector3)stream.ReceiveNext();
             ship.speed = (float)stream.ReceiveNext();
-
         }
     }
 
@@ -52,6 +68,26 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         // if (x != 0)
         //     RotateThruster(x);
         ActivateThruster();
+    }
+
+    public void CheckParticles()
+    {
+        float size = ship.speed * startSize;
+        if (ship.speed * startSize < minSize)
+            size = minSize;
+        psmain.startSize = size;
+    }
+
+    public void PlayParticle()
+    {
+        if (particle.isStopped)
+            particle.Play();
+    }
+
+    public void StopParticle()
+    {
+        if (particle.isPlaying)
+            particle.Stop();
     }
 
     void RotateThruster(float inputValue) {
@@ -85,11 +121,7 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         if (Input.GetButton("Jump"))
         {
             ship.Accelerate();
-            if (particle.isStopped)
-                particle.Play();
         }
-        if (Input.GetButtonUp("Jump"))
-            particle.Stop();
         if (Input.GetButton("Action1"))
             ship.SlowDown();
     }
