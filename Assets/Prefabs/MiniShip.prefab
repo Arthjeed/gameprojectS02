@@ -366,6 +366,21 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1706650771064956271, guid: 2ed6b5f97ae972f42ac8dcadd5b76bc3,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706650771064956271, guid: 2ed6b5f97ae972f42ac8dcadd5b76bc3,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.62277806
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706650771064956271, guid: 2ed6b5f97ae972f42ac8dcadd5b76bc3,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed6b5f97ae972f42ac8dcadd5b76bc3, type: 3}
 --- !u!4 &2711459896204736193 stripped
