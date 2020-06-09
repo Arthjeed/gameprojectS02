@@ -26,8 +26,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.collider.tag);
-        if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Enemy"|| collision.collider.tag == "Asteroide")
             Destroy(gameObject);
 
     }

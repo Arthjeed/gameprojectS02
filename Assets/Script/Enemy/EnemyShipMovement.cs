@@ -34,6 +34,7 @@ public class EnemyShipMovement : MonoBehaviour
 
     void Update()
     {
+
     }
 
     public void goForward(float speed)

@@ -11,6 +11,7 @@ TagManager:
   - Shield
   - PickUp
   - EnemyProjectile
+  - Asteroide
   layers:
   - Default
   - TransparentFX
