@@ -1201,7 +1201,7 @@ MonoBehaviour:
   OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 5364692419615325719}
-  viewIdField: 10
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &5364692419615325719
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 302517553}
-  viewIdField: 5
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &302517553
@@ -4899,7 +4899,7 @@ PrefabInstance:
     - target: {fileID: 6567465769518018281, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
       propertyPath: viewIdField
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6612829045193334816, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
@@ -5439,7 +5439,7 @@ PrefabInstance:
     - target: {fileID: 6567465769518018281, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
       propertyPath: viewIdField
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6612829045193334816, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
@@ -5594,7 +5594,7 @@ PrefabInstance:
     - target: {fileID: 4361946365437833209, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
       propertyPath: viewIdField
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7178556368334822128, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
@@ -7005,7 +7005,7 @@ PrefabInstance:
     - target: {fileID: 6567465769518018281, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6612829045193334816, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
@@ -7880,7 +7880,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -8470,7 +8470,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -9045,7 +9045,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -9445,7 +9445,7 @@ PrefabInstance:
     - target: {fileID: 4361946365437833209, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
       propertyPath: viewIdField
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7178556368334822128, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
@@ -9531,7 +9531,7 @@ PrefabInstance:
     - target: {fileID: 4361946365437833209, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
       propertyPath: viewIdField
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7178556368334822128, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
@@ -9617,7 +9617,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -10252,7 +10252,7 @@ PrefabInstance:
     - target: {fileID: 6567465769518018281, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
       propertyPath: viewIdField
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6612829045193334816, guid: 8120ff77e9e205d4d9dfeefa981ba4eb,
         type: 3}
@@ -10402,7 +10402,7 @@ PrefabInstance:
     - target: {fileID: 2482229214015930590, guid: 2d5df0564791a204fa67bc93dcc44cda,
         type: 3}
       propertyPath: viewIdField
-      value: 24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3616267894081475485, guid: 2d5df0564791a204fa67bc93dcc44cda,
         type: 3}
@@ -10673,7 +10673,7 @@ PrefabInstance:
     - target: {fileID: 1660481470971551606, guid: 01850bda1f56f504b8b9b65ae5f5bf03,
         type: 3}
       propertyPath: viewIdField
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893598828113188712, guid: 01850bda1f56f504b8b9b65ae5f5bf03,
         type: 3}
@@ -10873,7 +10873,7 @@ PrefabInstance:
     - target: {fileID: 4239512326948874698, guid: 248f79047f317bb4bb08b16c33cf8f88,
         type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394707125848240492, guid: 248f79047f317bb4bb08b16c33cf8f88,
         type: 3}
@@ -10903,7 +10903,7 @@ PrefabInstance:
     - target: {fileID: 7507597308721906246, guid: 248f79047f317bb4bb08b16c33cf8f88,
         type: 3}
       propertyPath: viewIdField
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248f79047f317bb4bb08b16c33cf8f88, type: 3}
@@ -10940,7 +10940,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -11150,7 +11150,7 @@ PrefabInstance:
     - target: {fileID: -7940353677173402584, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
       propertyPath: viewIdField
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152262717555473017, guid: cce523ae8c83c314880e86bad318cdbd,
         type: 3}
@@ -11456,7 +11456,7 @@ PrefabInstance:
     - target: {fileID: 4361946365437833209, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
       propertyPath: viewIdField
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7178556368334822128, guid: 8dc829d9e55d2434893713151a513eb8,
         type: 3}
