@@ -51,6 +51,13 @@ public class MiniShip : MonoBehaviour
         //     ReturnShip();
     }
 
+    void OnDisable()
+    {
+        foreach (ParticleSystem part in trails)
+            part.Stop();
+        isMoving = false;
+    }
+
     void ActivateThruster()
     {
         if (Input.GetButton("Jump"))
@@ -136,10 +143,10 @@ public class MiniShip : MonoBehaviour
         initPos = transform.localPosition;
         initRot = transform.rotation;
         gameObject.transform.SetParent(null);
+        arrow.SetActive(true);
         SetLayer(0);
         cam.enabled = true;
         PV.RPC("Unparent", RpcTarget.Others);
-        arrow.SetActive(true);
     }
 
     public void ReturnShip()
@@ -151,8 +158,8 @@ public class MiniShip : MonoBehaviour
         transf.localPosition = initPos;
         transf.rotation = initRot;
         speed = 0;
-        PV.RPC("Parent", RpcTarget.Others);
         arrow.SetActive(false);
+        PV.RPC("Parent", RpcTarget.Others);
     }
 
     [PunRPC]

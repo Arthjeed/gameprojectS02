@@ -70,8 +70,7 @@ public class Interact : MonoBehaviour
         if (collision.gameObject.CompareTag("Post"))
         {
             interactObject = collision.gameObject.GetComponent<Post>();
-            if (PV.IsMine)
-                interactObject.CanUse();
+            interactObject.CanUse();
         }
     }
 
@@ -79,8 +78,7 @@ public class Interact : MonoBehaviour
     {
         if (!interacting)
         {
-            if (PV.IsMine)
-                interactObject.CantUse();
+            interactObject.CantUse();
             interactObject = null;
         }
     }
