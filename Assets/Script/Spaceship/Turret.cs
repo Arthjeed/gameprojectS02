@@ -20,6 +20,8 @@ public class Turret : MonoBehaviour
     private float rayon = 100;
     private Vector3 startPosition;
     private Quaternion parentRot;
+    [SerializeField]
+    private ParticleSystem indicator;
     // private PhotonView PV;
 
     void Start()
@@ -39,6 +41,18 @@ public class Turret : MonoBehaviour
     {
         RotateThruster();
         ActivateTurret();
+    }
+
+    void OnEnable()
+    {
+        indicator.Play();
+        StartCoroutine(StopParticleSystem(indicator, 1.5f));
+    }
+
+    IEnumerator StopParticleSystem(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
 
     void RotateThruster()

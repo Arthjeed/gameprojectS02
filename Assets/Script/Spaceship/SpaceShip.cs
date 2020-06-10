@@ -16,6 +16,8 @@ public class SpaceShip : MonoBehaviour, IPunObservable
     private Vector3 crashVelo; 
     private Transform transf;
     private bool isCrashing = false;
+    [SerializeField]
+    private ThrusterControls thruster;
 
     void Start()
     {
@@ -51,9 +53,20 @@ public class SpaceShip : MonoBehaviour, IPunObservable
     void Update()
     {
         if (isCrashing)
+        {
             transf.Translate(crashVelo * Mathf.Abs(speed), Space.World);
-        else
+            thruster.CheckParticles();
+        }
+        else if (speed > 0)
+        {
+            thruster.PlayParticle();
+            thruster.CheckParticles();
             transf.Translate(transform.forward * speed, Space.World);
+        }
+        else if (speed <= 0)
+        {
+            thruster.StopParticle();
+        }
         // else
         //     transf.Translate(currentVelo, Space.World);
         // rb.velocity = transform.forward * Time.deltaTime * speed;

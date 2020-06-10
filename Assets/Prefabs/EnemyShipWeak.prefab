@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: -4650336777203566274}
   - component: {fileID: 1436265493449810929}
   - component: {fileID: 9088904077441907709}
+  - component: {fileID: -6291208766318107232}
+  - component: {fileID: -2493214248788891481}
   m_Layer: 0
   m_Name: EnemyShipWeak
   m_TagString: Enemy
@@ -123,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6252807758796319413}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a966e5072bb24a43ad854b3a4548518, type: 3}
   m_Name: 
@@ -134,7 +136,7 @@ MonoBehaviour:
   reloadTime: 50
   masse: 100
   reactorLight: {fileID: 5212248165575614627}
-  laser: {fileID: 5622359367153464744, guid: 5d1af2a1adde81543a53f4395f2ce42f, type: 3}
+  laser: {fileID: 4648287101403432050, guid: 56a686f7dcf28a8498be6036536ac9e0, type: 3}
   laserSpawn: {fileID: 8591157452183296094}
 --- !u!50 &2122687108811920254
 Rigidbody2D:
@@ -169,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialDistancing: 150
+  socialDistancing: 120
   _target: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
   speed: 20
 --- !u!58 &1436265493449810929
@@ -202,8 +204,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipAILevel: 1
   ShipPower: 1
-  drop: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a, type: 3}
-  player: {fileID: 5364692419352857884, guid: b4bd6cf3cb5bb3f4b803004102ee7c37, type: 3}
+  dropUranium: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a,
+    type: 3}
+  dropHealth: {fileID: 7624656741136397555, guid: 57bbde095f153f947a2d0a0dd6550435,
+    type: 3}
+  deathAnimation: {fileID: 1456060657882760, guid: 7e6767444726b234c868079dec6d7ae0,
+    type: 3}
+--- !u!114 &-6291208766318107232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252807758796319413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: -2493214248788891481}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-2493214248788891481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252807758796319413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1001 &5846366189180083814
 PrefabInstance:
   m_ObjectHideFlags: 0

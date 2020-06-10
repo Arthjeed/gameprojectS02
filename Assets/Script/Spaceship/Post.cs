@@ -10,6 +10,10 @@ public class Post : MonoBehaviour
     private GameObject playerCam;
     private PhotonView PV;
     public bool occupied = false;
+    [SerializeField]
+    private ParticleSystem effectUsing;
+    [SerializeField]
+    private ParticleSystem effectFree;
 
     public enum postType
     {
@@ -111,15 +115,27 @@ public class Post : MonoBehaviour
         }
     }
 
+    public void CanUse()
+    {
+        effectFree.Play();
+    }
+
+    public void CantUse()
+    {
+        effectFree.Stop();
+    }
+
     [PunRPC]
     void FreePost()
     {
         occupied = false;
+        effectUsing.Stop();
     }
 
     [PunRPC]
     void OccupyPost()
     {
         occupied = true;
+        effectUsing.Play();
     }
 }

@@ -23,6 +23,13 @@ public class MiniShip : MonoBehaviour
     private Camera cam;
     private PhotonView PV;
     private PhotonTransformView photonTrans;
+    [SerializeField]
+    private GameObject arrow;
+    [SerializeField]
+    private ParticleSystem shootParticle;
+    [SerializeField]
+    private ParticleSystem[] trails;
+    private bool isMoving = false;
 
     void Awake()
     {
@@ -44,18 +51,30 @@ public class MiniShip : MonoBehaviour
         //     ReturnShip();
     }
 
+    void OnDisable()
+    {
+        foreach (ParticleSystem part in trails)
+            part.Stop();
+        isMoving = false;
+    }
+
     void ActivateThruster()
     {
         if (Input.GetButton("Jump"))
-        {
             Accelerate();
-            // if (particle.isStopped)
-            //     particle.Play();
-        }
-        // if (Input.GetButtonUp("Jump"))
-        //     particle.Stop();
         if (Input.GetButton("Action1"))
             SlowDown();
+        if (speed <= 0 && isMoving == true)
+        {
+            isMoving = false;
+            foreach (ParticleSystem part in trails)
+                part.Stop();
+        } else if (isMoving == false && speed > 0)
+        {
+            isMoving = true;
+            foreach (ParticleSystem part in trails)
+                part.Play();
+        }
     }
 
     void SlowDown()
@@ -107,6 +126,7 @@ public class MiniShip : MonoBehaviour
     {
         if (Input.GetButtonDown("Action2"))
         {
+            shootParticle.Play();
             Quaternion rotation = transf.rotation * parentRot;
             GameObject newProj = PhotonNetwork.Instantiate("ProjectileMiniShip", transf.position, rotation);
             newProj.GetComponent<Projectile>().SetDirection(transform.forward);
@@ -123,7 +143,8 @@ public class MiniShip : MonoBehaviour
         initPos = transform.localPosition;
         initRot = transform.rotation;
         gameObject.transform.SetParent(null);
-        gameObject.layer = 0;
+        arrow.SetActive(true);
+        SetLayer(0);
         cam.enabled = true;
         PV.RPC("Unparent", RpcTarget.Others);
     }
@@ -133,10 +154,11 @@ public class MiniShip : MonoBehaviour
         cam.enabled = false;
         photonTrans.enabled = false;
         gameObject.transform.SetParent(parent);
-        gameObject.layer = wallLayer;
+        SetLayer(wallLayer);
         transf.localPosition = initPos;
         transf.rotation = initRot;
         speed = 0;
+        arrow.SetActive(false);
         PV.RPC("Parent", RpcTarget.Others);
     }
 
@@ -149,7 +171,7 @@ public class MiniShip : MonoBehaviour
         initPos = transform.localPosition;
         initRot = transform.rotation;
         gameObject.transform.SetParent(null);
-        gameObject.layer = 0;
+        SetLayer(0);
     }
 
     [PunRPC]
@@ -157,9 +179,19 @@ public class MiniShip : MonoBehaviour
     {
         photonTrans.enabled = false;
         gameObject.transform.SetParent(parent);
-        gameObject.layer = wallLayer;
+        SetLayer(wallLayer);
         transform.localPosition = initPos;
         transform.rotation = initRot;
         speed = 0;
+    }
+
+    void SetLayer(int layer)
+    {
+        Transform[] children = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform go in children)
+        {
+            go.gameObject.layer = layer;
+        }
+        gameObject.layer = layer;
     }
 }
