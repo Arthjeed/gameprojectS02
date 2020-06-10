@@ -27,14 +27,14 @@ public class MapGenerator : MonoBehaviour {
 
 	void Start() {
 		GenerateMap();
-		surface.BuildNavMesh();
+		//surface.BuildNavMesh();
 	}
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.M)) {
 			GenerateMap();
-			navMeshDataInstance.Remove();
-			surface.BuildNavMesh();
+			//navMeshDataInstance.Remove();
+			//surface.BuildNavMesh();
 		}
 	}
 
