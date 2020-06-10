@@ -7,6 +7,7 @@ public class MeshGenerator : MonoBehaviour {
 	public SquareGrid squareGrid;
 	public MeshFilter walls;
 	public MeshFilter cave;
+	public int tileAmount;
 
 	public bool is2D;
 
@@ -42,7 +43,7 @@ public class MeshGenerator : MonoBehaviour {
 		mesh.triangles = triangles.ToArray();
 		mesh.RecalculateNormals();
 
-		int tileAmount = 10;
+		//int tileAmount = 10;
 		Vector2[] uvs = new Vector2[vertices.Count];
 		for (int i =0; i < vertices.Count; i ++) {
 			float percentX = Mathf.InverseLerp(-map.GetLength(0)/2*squareSize,map.GetLength(0)/2*squareSize,vertices[i].x) * tileAmount;
