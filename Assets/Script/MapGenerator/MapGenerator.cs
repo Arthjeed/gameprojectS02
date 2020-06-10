@@ -27,14 +27,14 @@ public class MapGenerator : MonoBehaviour {
 
 	void Start() {
 		GenerateMap();
-		//surface.BuildNavMesh();
+		surface.BuildNavMesh();
 	}
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.M)) {
 			GenerateMap();
-			//navMeshDataInstance.Remove();
-			//surface.BuildNavMesh();
+			navMeshDataInstance.Remove();
+			surface.BuildNavMesh();
 		}
 	}
 
@@ -334,7 +334,7 @@ public class MapGenerator : MonoBehaviour {
 	
 		if (useRandomSeed) {
 			seed = Time.time.ToString();
-            Debug.Log(seed.GetHashCode());
+            //Debug.Log(seed.GetHashCode());
 		}
 
 		System.Random pseudoRandom = new System.Random(seed.GetHashCode());
