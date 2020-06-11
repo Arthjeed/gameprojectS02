@@ -55,17 +55,13 @@ public class SpaceShip : MonoBehaviour, IPunObservable
         if (isCrashing)
         {
             transf.Translate(crashVelo * Mathf.Abs(speed), Space.World);
-            thruster.CheckParticles();
+            thruster.StopParticle();
         }
         else if (speed > 0)
         {
             thruster.PlayParticle();
             thruster.CheckParticles();
             transf.Translate(transform.forward * speed, Space.World);
-        }
-        else if (speed <= 0)
-        {
-            thruster.StopParticle();
         }
         // else
         //     transf.Translate(currentVelo, Space.World);

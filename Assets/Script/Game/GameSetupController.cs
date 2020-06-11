@@ -20,12 +20,12 @@ public class GameSetupController : MonoBehaviour
     
     void Start()
     {
-
         CreatePlayer();
     }
 
     private void CreatePlayer() {
-        Debug.Log("creating Player");
+        if (PhotonNetwork.CountOfPlayers <= 1)
+            PhotonNetwork.OfflineMode = true;
         Vector3 playerPos = new Vector3(0, 32.6f, 0);
         GameObject player = PhotonNetwork.Instantiate(Path.Combine("photonPrefabs", "Player"), playerPos, spaceship.rotation);
         player.transform.parent = spaceship;
