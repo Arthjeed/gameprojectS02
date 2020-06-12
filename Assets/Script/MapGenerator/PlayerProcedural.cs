@@ -4,7 +4,22 @@ using UnityEngine.AI;
 
 public class PlayerProcedural : MonoBehaviour {
 
-	public Camera camera;
+	Rigidbody2D rigidbody;
+	Vector2 velocity;
+	
+	void Start () {
+		rigidbody = GetComponent<Rigidbody2D> ();
+	}
+
+	void Update () {
+		velocity = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * 10;
+	}
+
+	void FixedUpdate() {
+		rigidbody.MovePosition (rigidbody.position + velocity * Time.fixedDeltaTime);
+	}
+
+	/*public Camera camera;
 	public NavMeshAgent agent;
 
 	void Update()
@@ -19,7 +34,7 @@ public class PlayerProcedural : MonoBehaviour {
 				agent.SetDestination(hit.point);
 			}
 		}
-	}
+	}*/
 	/*Rigidbody rigidbody;
 	Vector3 velocity;
 	

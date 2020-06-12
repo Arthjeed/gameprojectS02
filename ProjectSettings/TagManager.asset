@@ -11,7 +11,7 @@ TagManager:
   - Shield
   - PickUp
   - EnemyProjectile
-  - Asteroide
+  - Spaceship
   layers:
   - Default
   - TransparentFX
@@ -23,7 +23,7 @@ TagManager:
   - 
   - Wall
   - Player
-  - 
+  - Map
   - 
   - 
   - 

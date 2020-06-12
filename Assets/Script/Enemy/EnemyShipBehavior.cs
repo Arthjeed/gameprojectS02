@@ -22,7 +22,7 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Spaceship").transform;
         //player = GameObject.FindGameObjectsWithTag("player");
     }
 
@@ -68,10 +68,15 @@ public class EnemyShipBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
+        if (collision.collider.tag == "Player")
         {
             DestroyShip();
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        DestroyShip();
     }
 
     void DestroyShip()

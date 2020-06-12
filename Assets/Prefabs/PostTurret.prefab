@@ -506,6 +506,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7623579139522261720, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7623579139522261721, guid: 60d7c47c39fa60d4eafec29faa59f4d5,
         type: 3}
       propertyPath: Y

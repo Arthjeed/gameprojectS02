@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private Vector2 dir;
     public float projectileSpeed = 5;
-    public float projectileDamage = 5;
+    public float power = 10;
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -24,10 +24,14 @@ public class Projectile : MonoBehaviour
         dir.Normalize();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyShipBehavior>().TakeDamage(power);
+        }
+
         if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Enemy"|| collision.collider.tag == "Asteroide")
             Destroy(gameObject);
-
     }
 }
