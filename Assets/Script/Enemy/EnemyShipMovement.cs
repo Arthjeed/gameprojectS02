@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyShipMovement : MonoBehaviour
 {
     public float maxSpeed = 20;
-    public float damage = 10;
     public float speedMissile = 0.2f;
     public int reloadTime = 20;
     public int masse = 100;
@@ -23,6 +22,7 @@ public class EnemyShipMovement : MonoBehaviour
 
     private int reloadState = 0;
     private int count = 0;
+    private float damage;
 
     private Rigidbody2D rb;
 
@@ -35,6 +35,11 @@ public class EnemyShipMovement : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void setDamage(float _damage)
+    {
+        damage = _damage;
     }
 
     public void goForward(float speed)

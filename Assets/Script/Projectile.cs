@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private Vector2 dir;
     public float projectileSpeed = 5;
-    public float power = 10;
+    public float power = 5;
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -29,9 +29,10 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyShipBehavior>().TakeDamage(power);
+            Destroy(gameObject);
         }
 
-        if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Enemy"|| collision.collider.tag == "Asteroide")
+        if (collision.gameObject.CompareTag("Obstacle") ||  collision.gameObject.CompareTag("Asteroide"))
             Destroy(gameObject);
     }
 }

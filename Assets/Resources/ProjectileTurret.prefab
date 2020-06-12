@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 150
-  power: 10
+  power: 5
 --- !u!50 &-1681648498818335275
 Rigidbody2D:
   serializedVersion: 4

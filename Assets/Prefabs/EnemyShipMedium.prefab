@@ -20,6 +20,8 @@ MonoBehaviour:
     type: 3}
   deathAnimation: {fileID: 1377424659350760, guid: f1de78bcb509f9f4f81dd92becbf341c,
     type: 3}
+  damageSmoke: {fileID: 4410441630688876205}
+  damageTexture: {fileID: 2100000, guid: f5957c73401b96b45b0f1875f68df645, type: 2}
 --- !u!1001 &117186892437134435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +207,12 @@ GameObject:
 --- !u!4 &5329434894803991744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5212248165575614627, guid: f9d62f963061d50469337e93005a8bc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 117186892437134435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4410441630688876205 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4365498287730592462, guid: f9d62f963061d50469337e93005a8bc0,
     type: 3}
   m_PrefabInstance: {fileID: 117186892437134435}
   m_PrefabAsset: {fileID: 0}

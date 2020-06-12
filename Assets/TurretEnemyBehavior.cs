@@ -26,7 +26,7 @@ public class TurretEnemyBehavior : MonoBehaviour
     private Transform tmpLook;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Spaceship").transform;
         tmpLook = pivot;
     }
 
