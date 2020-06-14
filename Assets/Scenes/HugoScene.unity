@@ -235,6 +235,11 @@ PrefabInstance:
       propertyPath: m_Colors.m_ColorMultiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8384267119018042470, guid: de7a0aaaca65f86458a01cb91f38e809,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8487947315570006266, guid: de7a0aaaca65f86458a01cb91f38e809,
         type: 3}
       propertyPath: m_Name
@@ -678,6 +683,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 2997503408777638644, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
+        type: 3}
+      propertyPath: viewIdField
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3211898293285461822, guid: b4bd6cf3cb5bb3f4b803004102ee7c37,
         type: 3}
       propertyPath: HealthBar
@@ -836,7 +846,12 @@ PrefabInstance:
     - target: {fileID: 8383783708449008814, guid: 8522e20f7943dcf49b8daddb47d530bc,
         type: 3}
       propertyPath: m_FillAmount
-      value: 1
+      value: 0.845
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384267119018042470, guid: 8522e20f7943dcf49b8daddb47d530bc,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8487947315570006266, guid: 8522e20f7943dcf49b8daddb47d530bc,
         type: 3}
