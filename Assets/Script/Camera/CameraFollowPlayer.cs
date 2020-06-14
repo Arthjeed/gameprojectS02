@@ -91,7 +91,7 @@ public class CameraFollowPlayer : MonoBehaviour
         lerpT = 0;
         cameraOnPlayer = !cameraOnPlayer;
         if (!cameraOnPlayer)
-            cam.cullingMask = (1 << LayerMask.NameToLayer("Default"));// | (1 << LayerMask.NameToLayer("Wall"));
+            cam.cullingMask = (1 << LayerMask.NameToLayer("Default")) | (1 << LayerMask.NameToLayer("Map"));// | (1 << LayerMask.NameToLayer("Wall"));
         else
             cam.cullingMask = -1;
     }

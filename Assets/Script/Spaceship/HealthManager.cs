@@ -29,7 +29,6 @@ public class HealthManager : MonoBehaviour
 
     void checkDeath()
     {
-        if (health <= 0)
-            print("you died");
+        if (health <= 0) ;
     }
 }

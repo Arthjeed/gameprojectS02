@@ -67,20 +67,20 @@ public class Interact : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Post"))
+        if (collision.gameObject.CompareTag("Post") && PV.IsMine)
         {
             interactObject = collision.gameObject.GetComponent<Post>();
-            if (PV.IsMine)
-                interactObject.CanUse();
+            interactObject.CanUse();
+            collision.gameObject.GetComponent<UiEnable>().Enable();
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (!interacting)
+        if (!interacting && PV.IsMine)
         {
-            if (PV.IsMine)
-                interactObject.CantUse();
+            interactObject.CantUse();
+            collision.gameObject.GetComponent<UiEnable>().Disable();
             interactObject = null;
         }
     }

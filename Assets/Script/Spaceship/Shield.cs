@@ -13,6 +13,8 @@ public class Shield : MonoBehaviour
     private float rayon = 100;
     private PhotonView PV;
     private PhotonTransformView photonTrans;
+    [SerializeField]
+    private ParticleSystem indicator;
 
     // private float angle = 0;
 
@@ -29,11 +31,19 @@ public class Shield : MonoBehaviour
     void OnEnable()
     {
         PV.RPC("StartShield", RpcTarget.All);
+        indicator.Play();
+        StartCoroutine(StopParticleSystem(indicator, 1.5f));
     }
 
     void OnDisable()
     {
         PV.RPC("StopShield", RpcTarget.All);
+    }
+
+    IEnumerator StopParticleSystem(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
 
     [PunRPC]

@@ -7,6 +7,8 @@ public class Canon : MonoBehaviour
 {
     public GameObject projectile;
     private GameObject parent;
+    [SerializeField]
+    private ParticleSystem indicator;
     void Start()
     {
         parent = transform.parent.gameObject;
@@ -19,6 +21,18 @@ public class Canon : MonoBehaviour
         {
             Shoot();
         }
+    }
+
+    void OnEnable()
+    {
+        indicator.Play();
+        StartCoroutine(StopParticleSystem(indicator, 1.5f));
+    }
+
+    IEnumerator StopParticleSystem(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
 
     public void Shoot() {

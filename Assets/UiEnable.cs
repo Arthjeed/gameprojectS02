@@ -8,28 +8,20 @@ public class UiEnable : MonoBehaviour
     public GameObject UI;
     private PhotonView PV;
 
-    // Start is called before the first frame update
     void Start()
     {
-        UI.SetActive(false);
         PV = GetComponent<PhotonView>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enable()
     {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (PV.IsMine)
+        // if (PV.IsMine && col.gameObject.CompareTag("Player"))
             UI.SetActive(true);
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    public void Disable()
     {
-        if (PV.IsMine)
+        // if (PV.IsMine && col.gameObject.CompareTag("Player"))
             UI.SetActive(false);
     }
 }
