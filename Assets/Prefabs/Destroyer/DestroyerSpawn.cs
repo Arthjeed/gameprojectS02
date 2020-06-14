@@ -11,21 +11,12 @@ public class DestroyerSpawn : MonoBehaviour
 
     [Range(0,100)]
     public float speed;
-    
-    private int _totalChunks = 0;
-    private bool _oneTime = true;
+    public int chunkNumber = 50;
     
     private Vector3 _targetCoreClosestPoint;
-    //private Vector3 _position;
     private Transform _childTransform;
-    
-    private GameObject chunks;
+    private bool _oneTime = true;  
 
-    void Start()
-    {
-    }
-
-    //chunks.transform.position - chunks.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().bounds.size
     // Update is called once per frame
     void Update()
     {
@@ -34,8 +25,8 @@ public class DestroyerSpawn : MonoBehaviour
             //head = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             head = Instantiate(head, transform.position, transform.rotation);
             head.transform.SetParent(destroyer.transform);
-            for (_totalChunks = 0; _totalChunks < 50; _totalChunks++){
-                chunks = Instantiate(body, transform.position, transform.rotation);
+            for (int chunk = 0; chunk < chunkNumber; chunk++){
+                GameObject chunks = Instantiate(body, transform.position, transform.rotation);
                 chunks.transform.SetParent(destroyer.transform);
             }
             GameObject tailchunk = Instantiate(tail, transform.position, transform.rotation);
@@ -50,18 +41,17 @@ public class DestroyerSpawn : MonoBehaviour
         }
 
         if (_oneTime == false) {
-            for (_totalChunks = 1; _totalChunks < 52; _totalChunks++){
-                //_position = destroyer.transform.GetChild(_totalChunks).transform.position;
-                _childTransform = destroyer.transform.GetChild(_totalChunks).transform;
-                _targetCoreClosestPoint = destroyer.transform.GetChild(_totalChunks - 1).GetChild(0).GetChild(0).GetComponent<CircleCollider2D>().bounds.ClosestPoint(_childTransform.position);
+            for (int chunk = 1; chunk < chunkNumber + 2; chunk++){
+                _childTransform = destroyer.transform.GetChild(chunk).transform;
+                _targetCoreClosestPoint = destroyer.transform.GetChild(chunk - 1).GetChild(0).GetChild(0).GetComponent<CircleCollider2D>().bounds.ClosestPoint(_childTransform.position);
 
                 if ((Vector3.Distance(_targetCoreClosestPoint, _childTransform.position) > 
                 Vector3.Distance(_targetCoreClosestPoint, _childTransform.position + _childTransform.forward * speed * Time.deltaTime))
-                 && (Vector3.Distance(_targetCoreClosestPoint, _childTransform.position + _childTransform.forward * speed * Time.deltaTime) > 0.0f))
+                 /*&& (Vector3.Distance(_targetCoreClosestPoint, _childTransform.position + _childTransform.forward * speed * Time.deltaTime) > 0.0f)*/)
                     _childTransform.position += _childTransform.forward * (speed) * Time.deltaTime;
                 
-                _childTransform.rotation = Quaternion.LookRotation(new Vector3(destroyer.transform.GetChild(_totalChunks - 1).transform.position.x - _childTransform.position.x, 
-                destroyer.transform.GetChild(_totalChunks - 1).transform.position.y - _childTransform.position.y, 0), Vector3.back).normalized;
+                _childTransform.rotation = Quaternion.LookRotation(new Vector3(destroyer.transform.GetChild(chunk - 1).transform.position.x - _childTransform.position.x, 
+                destroyer.transform.GetChild(chunk - 1).transform.position.y - _childTransform.position.y, 0), Vector3.back).normalized;
                 
             }
         }
