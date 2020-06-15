@@ -30,4 +30,6 @@ public class PauseManager : MonoBehaviour {
     public void exit () {
         SceneManager.LoadScene ("MainMenu");
     }
+
+    
 }
