@@ -16,9 +16,10 @@ public class TurretCollision : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
+    private void OnTriggerEnter2D(Collider2D collision)
+{
+    print("turret col");
+        if (collision.tag == "Player" || collision.tag == "AllyProjectile")
             turret.GetComponent<TurretEnemyBehavior>().DestroyShip();
     }
 }

@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: -6291208766318107232}
   - component: {fileID: -2493214248788891481}
   m_Layer: 0
-  m_Name: EnemyShipWeak
+  m_Name: EnemyShipHard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6252807758796319413}
-  m_Mesh: {fileID: 4300000, guid: 6fbfc36663d880e468973876def3846c, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 4099c75e8abf6074688843779da40e8d, type: 3}
 --- !u!23 &6238809871692209837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4cee7a5983b187943adc589b9cb1f084, type: 2}
+  - {fileID: 2100000, guid: 9cc05dbbc727f27499fdb727a4d10523, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a966e5072bb24a43ad854b3a4548518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  speedMissile: 40
-  reloadTime: 50
+  maxSpeed: 70
+  speedMissile: 50
+  reloadTime: 30
   masse: 100
   reactorLight: {fileID: 5212248165575614627}
   laser: {fileID: 4648287101403432050, guid: 56a686f7dcf28a8498be6036536ac9e0, type: 3}
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e1da0116a1932438ef71662671dbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialDistancing: 120
-  speed: 20
+  socialDistancing: 140
+  speed: 40
 --- !u!58 &1436265493449810929
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,13 +201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f476c7ba55034438f1e2e77b49d84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipAILevel: 1
-  ShipPower: 1
+  ShipAILevel: 3
+  ShipPower: 8
   dropUranium: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a,
     type: 3}
   dropHealth: {fileID: 7624656741136397555, guid: 57bbde095f153f947a2d0a0dd6550435,
     type: 3}
-  deathAnimation: {fileID: 1456060657882760, guid: 7e6767444726b234c868079dec6d7ae0,
+  deathAnimation: {fileID: 1963794456310454, guid: da420a91596617b4ab0f8941677b52e2,
     type: 3}
   damageSmoke: {fileID: 4365498287730592462}
   damageTexture: {fileID: 2100000, guid: f5957c73401b96b45b0f1875f68df645, type: 2}
