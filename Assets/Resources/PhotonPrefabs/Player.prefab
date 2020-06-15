@@ -2070,8 +2070,8 @@ Transform:
   m_Children:
   - {fileID: 2893598829696749258}
   - {fileID: 2893598829082426927}
-  - {fileID: 3526930816313957067}
   - {fileID: 7681181591803116014}
+  - {fileID: 3526930816313957067}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5834,7 +5834,7 @@ RectTransform:
   - {fileID: 7988939791723264904}
   - {fileID: 8292053650588995223}
   m_Father: {fileID: 2893598828113188713}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6512,7 +6512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2893598828113188713}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3533553610584868052
 MonoBehaviour:
@@ -6526,4 +6526,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e4a2c47cea70143a23f6a694ea2ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiElement: {fileID: 883742864634666797}
+  UiElement: {fileID: 4392883373068456930}

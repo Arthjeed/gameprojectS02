@@ -15,17 +15,17 @@ public class PauseManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKey (KeyCode.Escape))
-            if (IsActive) {
-                UiElement.SetActive (false);
-            } else {
-                UiElement.SetActive (true);
-            }
-        IsActive = !IsActive;
+        Debug.Log ("tatat");
+        if (Input.GetKeyUp (KeyCode.Escape)) {
+            Debug.Log ("toto " + IsActive);
+            UiElement.SetActive(!IsActive);
+            IsActive = !IsActive;
+        }
     }
 
     public void resume () {
         UiElement.SetActive (false);
+        IsActive = false;
     }
     public void exit () {
         SceneManager.LoadScene ("MainMenu");
