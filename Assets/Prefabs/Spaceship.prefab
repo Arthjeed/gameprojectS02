@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c432dae220863f4d8fd7f8cf9d98893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   HealthBar: {fileID: 0}
 --- !u!60 &8466950409567415644
 PolygonCollider2D:

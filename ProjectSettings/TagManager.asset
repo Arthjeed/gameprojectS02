@@ -12,6 +12,8 @@ TagManager:
   - PickUp
   - EnemyProjectile
   - Spaceship
+  - Asteroide
+  - Spawner
   layers:
   - Default
   - TransparentFX
