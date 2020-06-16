@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 public class EnemyShipBehavior : MonoBehaviour
 {
@@ -28,9 +28,13 @@ public class EnemyShipBehavior : MonoBehaviour
     public ParticleSystem damageSmoke;
     public Material damageTexture;
     private Material originalTexture;
+    private PhotonView PV;
 
     void Start()
     {
+        PV = GetComponent<PhotonView>();
+        if (!PV.IsMine && PhotonNetwork.IsConnected)
+            this.enabled = false;
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
         player = GameObject.FindGameObjectWithTag("Spaceship").transform;
