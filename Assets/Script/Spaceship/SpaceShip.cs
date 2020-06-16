@@ -62,7 +62,8 @@ public class SpaceShip : MonoBehaviour, IPunObservable
             thruster.PlayParticle();
             thruster.CheckParticles();
             transf.Translate(transform.forward * speed, Space.World);
-        }
+        } else if (speed <= 0)
+            thruster.StopParticle();
         // else
         //     transf.Translate(currentVelo, Space.World);
         // rb.velocity = transform.forward * Time.deltaTime * speed;
