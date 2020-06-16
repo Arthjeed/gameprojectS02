@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private Vector2 dir;
     public float projectileSpeed = 5;
+    public float power = 5;
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -21,5 +22,17 @@ public class Projectile : MonoBehaviour
     {
         dir = direction;
         dir.Normalize();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyShipBehavior>().TakeDamage(power);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle") ||  collision.gameObject.CompareTag("Asteroide"))
+            Destroy(gameObject);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyShipBehavior : MonoBehaviour
 {
     private EnemyShipMovement shipMovement;
@@ -9,21 +10,32 @@ public class EnemyShipBehavior : MonoBehaviour
     private Ray ray;
     private Transform player;
 
-    private int RIGHT = 1;
-    private int LEFT = -1;
+    private float life;
+    private float damage;
+
+    private float dmgAnimeLapse = 0.1f;
+    private float dmgAnimeCount = 0;
+    private bool damaged = false;
 
     public int ShipAILevel = 1;
     public int ShipPower = 2;
     public GameObject dropUranium;
     public GameObject dropHealth;
     public GameObject deathAnimation;
+    public ParticleSystem damageSmoke;
+    public Material damageTexture;
+    private Material originalTexture;
 
     void Start()
     {
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Spaceship").transform;
         //player = GameObject.FindGameObjectsWithTag("player");
+        life = ShipPower * 6;
+        shipMovement.setDamage(ShipPower * 2);
+        originalTexture = GetComponent<Renderer>().material;
+        damageSmoke.Stop();
     }
 
     void Update()
@@ -31,6 +43,8 @@ public class EnemyShipBehavior : MonoBehaviour
         checkDistance();
         //shipMovement.strafe(transform.right);
         //player.position += (Vector3.up /50);
+        if (damaged)
+            checkDmgAnimation();
     }
 
     void checkDistance()
@@ -43,10 +57,11 @@ public class EnemyShipBehavior : MonoBehaviour
                 {
                     case 1:
                         shipMovement.shoot();
+                        follow.followTarget(player);
                         break;
                     case 2:
                         shipMovement.shoot();
-                        shipMovement.strafe(LEFT, player);
+                        shipMovement.strafe(-1, player);
                         break;
                 }
                    
@@ -67,9 +82,32 @@ public class EnemyShipBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player" || collision.collider.tag == "AllyProjectile")
+        if (collision.collider.tag == "Player")
         {
             DestroyShip();
+        }
+    }
+
+    public void TakeDamage(float playerDamage)
+    {
+        print("enemy received " + playerDamage + " damage");
+        life -= playerDamage;
+        GetComponent<Renderer>().material = damageTexture;
+        dmgAnimeCount = dmgAnimeLapse;
+        damaged = true;
+        damageSmoke.Play();
+        if (life <= 0)
+            DestroyShip();
+    }
+
+    private void checkDmgAnimation()
+    {
+        if (dmgAnimeCount > 0)
+        {
+            dmgAnimeCount -= Time.deltaTime;
+            if (dmgAnimeCount <= 0)
+                GetComponent<Renderer>().material = originalTexture;
+
         }
     }
 

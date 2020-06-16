@@ -5,13 +5,13 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public int socialDistancing;
-    public Transform _target;
 
     public float speed;
     private float previousAngle;
 
     private void Start()
     {
+
     }
 
     void Update()

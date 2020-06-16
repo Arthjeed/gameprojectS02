@@ -6,6 +6,8 @@ using Photon.Pun;
 public class Turret : MonoBehaviour
 {
     // Start is called before the first frame update
+    public AudioClip shot;
+    private AudioSource audioData;
     public string slideButton = "Move";
     public float rotateAngleSpeed = 10;
     public float minAngle = 15;
@@ -27,6 +29,7 @@ public class Turret : MonoBehaviour
     void Start()
     {
         // PV = GetComponent<PhotonView>();
+        audioData = GetComponent<AudioSource>();
         transf = transform;
         position = transf.position;
         localPosition = transf.localPosition;
@@ -97,6 +100,7 @@ public class Turret : MonoBehaviour
             // print(transf.rotation);
             // print(transf.localRotation);
             // Vector3 rotation = transf.localRotation * Vector3.forward;
+            audioData.PlayOneShot(shot, 1);
             Quaternion rotation = transf.rotation * parentRot;
             // GameObject newProj = Instantiate(projectile, transf.position, Quaternion.LookRotation(transf.forward, Vector3.up));
             // GameObject newProj = Instantiate(projectile, transf.position, Quaternion.identity * Quaternion.LookRotation(transf.forward, Vector3.up));

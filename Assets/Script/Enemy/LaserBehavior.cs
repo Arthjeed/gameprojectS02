@@ -52,7 +52,7 @@ public class LaserBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.collider.tag == "Player" || collision.collider.tag == "Shield") && !isExploding)
+        if ((collision.collider.tag == "Player" || collision.collider.tag == "Shield" || collision.collider.tag == "Obstacle") && !isExploding)
         {
             isExploding = true;
             Explosion.Stop();

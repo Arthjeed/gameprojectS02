@@ -8,6 +8,7 @@ public class HealthManager : MonoBehaviour
     public float maxHealth;
     private float health;
     public GameObject HealthBar;
+    public GameObject GameOver;
 
     void Start()
     {
@@ -29,7 +30,9 @@ public class HealthManager : MonoBehaviour
 
     void checkDeath()
     {
-        if (health <= 0)
-            print("you died");
+        if (health <= 0) {
+            HealthBar.SetActive(false);
+            GameOver.SetActive(true);
+        }
     }
 }
