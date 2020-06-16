@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserBehavior : MonoBehaviour
 {
+    private AudioSource audioData;
     public float damage;
     public float speed;
     public float lifeTime;
@@ -17,6 +18,7 @@ public class LaserBehavior : MonoBehaviour
     
     void Start()
     {
+        audioData = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class LaserBehavior : MonoBehaviour
         {
             clock++;
             transform.position += new Vector3(dir.x * Time.deltaTime * speed, dir.y * Time.deltaTime * speed, 0);
+            audioData.Play();
         } else if (Explosion.time > 1)
         {
             destroyLaser();

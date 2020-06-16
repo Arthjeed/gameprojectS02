@@ -8,6 +8,7 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
     public float rotateAngleSpeed = 10;
     public float minAngle = 15;
     public float maxAngle = 165;
+    private AudioSource audioData;
     private Vector2 position;
     private Vector2 localPosition;
     private GameObject parent;
@@ -29,6 +30,7 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         ship = parent.GetComponent<SpaceShip>();
         rayon = Vector2.Distance(position, parent.transform.position);
         particle = GetComponent<ParticleSystem>();
+        audioData = GetComponent<AudioSource>();
         psmain = particle.main;
         psmain.startSize = minSize;
         // particle.Stop();
@@ -78,6 +80,7 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
         psmain.startSize = size;
     }
 
+
     public void PlayParticle()
     {
         if (particle.isStopped)
@@ -120,7 +123,14 @@ public class ThrusterControls : MonoBehaviour, IPunObservable
     {
         if (Input.GetButton("Jump"))
         {
+            if (!audioData.isPlaying) {
+                audioData.Play();
+            }
             ship.Accelerate();
+        } else {
+            if (audioData.isPlaying){
+                audioData.Stop();
+            }
         }
         if (Input.GetButton("Action1"))
             ship.SlowDown();
