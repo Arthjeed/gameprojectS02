@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Photon.Pun;
 
 public class MapGenerator : MonoBehaviour {
 
@@ -24,10 +25,13 @@ public class MapGenerator : MonoBehaviour {
 
 	private NavMeshData navMeshData;
 	private NavMeshDataInstance navMeshDataInstance;
+    private PhotonView PV;
 
-	void Start() {
-		GenerateMap();
-		surface.BuildNavMesh();
+    void Start() {
+        PV = GetComponent<PhotonView>();
+		// if (PV.IsMine) {
+            GenerateMap();
+            surface.BuildNavMesh();
 	}
 
 	void Update() {

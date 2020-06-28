@@ -41,5 +41,7 @@ MonoBehaviour:
   - StartShield
   - StopShield
   - Unparent
+  - DestroyShipRPC
+  - TakeDamageRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0

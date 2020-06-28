@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 public class EnemyShipBehavior : MonoBehaviour
 {
@@ -25,9 +25,12 @@ public class EnemyShipBehavior : MonoBehaviour
     public ParticleSystem damageSmoke;
     public Material damageTexture;
     private Material originalTexture;
+    private Renderer render;
+    private PhotonView PV;
 
     void Start()
     {
+        PV = GetComponent<PhotonView>();
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
         player = GameObject.FindGameObjectWithTag("Spaceship").transform;
@@ -36,11 +39,13 @@ public class EnemyShipBehavior : MonoBehaviour
         shipMovement.setDamage(ShipPower * 2);
         originalTexture = GetComponent<Renderer>().material;
         damageSmoke.Stop();
+        render = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        checkDistance();
+        if (PV.IsMine)
+            checkDistance();
         //shipMovement.strafe(transform.right);
         //player.position += (Vector3.up /50);
         if (damaged)
@@ -90,9 +95,21 @@ public class EnemyShipBehavior : MonoBehaviour
 
     public void TakeDamage(float playerDamage)
     {
-        print("enemy received " + playerDamage + " damage");
+        PV.RPC("TakeDamageRPC", RpcTarget.Others, playerDamage);
         life -= playerDamage;
-        GetComponent<Renderer>().material = damageTexture;
+        render.material = damageTexture;
+        dmgAnimeCount = dmgAnimeLapse;
+        damaged = true;
+        damageSmoke.Play();
+        if (life <= 0)
+            DestroyShip();
+    }
+
+    [PunRPC]
+    void TakeDamageRPC(float playerDamage)
+    {
+        life -= playerDamage;
+        render.material = damageTexture;
         dmgAnimeCount = dmgAnimeLapse;
         damaged = true;
         damageSmoke.Play();
@@ -106,7 +123,7 @@ public class EnemyShipBehavior : MonoBehaviour
         {
             dmgAnimeCount -= Time.deltaTime;
             if (dmgAnimeCount <= 0)
-                GetComponent<Renderer>().material = originalTexture;
+                render.material = originalTexture;
 
         }
     }

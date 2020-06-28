@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpaceshipMovementTest.unity
     guid: a67cdf290c1a9974c8f92d7182ec07e1
+  - enabled: 1
+    path: Assets/Scenes/Scene3D.unity
+    guid: bcef7dd9fb51d1f40b1287da9bb986b4
   m_configObjects: {}

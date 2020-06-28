@@ -15,7 +15,6 @@ public class PauseManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Debug.Log ("tatat");
         if (Input.GetKeyUp (KeyCode.Escape)) {
             Debug.Log ("toto " + IsActive);
             UiElement.SetActive(!IsActive);

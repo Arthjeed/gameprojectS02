@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 3320543532071369339}
   - component: {fileID: 3875801829127449400}
   - component: {fileID: -2650878207148865040}
-  - component: {fileID: 8505134637802416767}
+  - component: {fileID: -438608740918789730}
   m_Layer: 0
   m_Name: ProjectileMiniShip
   m_TagString: AllyProjectile
@@ -290,14 +290,14 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 8505134637802416767}
+  - {fileID: -438608740918789730}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8505134637802416767
+--- !u!114 &-438608740918789730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

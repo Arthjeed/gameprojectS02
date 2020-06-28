@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -3910020062000699458}
   - component: {fileID: -4192753662428870295}
   - component: {fileID: 2553206050598417587}
-  - component: {fileID: 3157009718834173143}
+  - component: {fileID: 5283537313262876175}
   - component: {fileID: 3838222086757500162}
   m_Layer: 0
   m_Name: ProjectileCanon
@@ -121,11 +121,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 3157009718834173143}
+  - {fileID: 5283537313262876175}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3157009718834173143
+--- !u!114 &5283537313262876175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
