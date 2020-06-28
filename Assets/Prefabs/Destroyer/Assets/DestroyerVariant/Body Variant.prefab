@@ -108,6 +108,22 @@ CircleCollider2D:
   m_Offset: {x: -0.00000023841858, y: 0}
   serializedVersion: 2
   m_Radius: 6
+--- !u!114 &1302957381668010485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089329897583097912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddbff51d9c063d43bf23f2f60091139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystal: {fileID: 2423716802287629856}
+  lightCrystal: {fileID: 1816595127}
+  target: {fileID: 0}
+  projectile: {fileID: 0}
 --- !u!1001 &4119333773612706514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,12 +154,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: b7fd0bed86c8a7a45919ffdb27bfc5e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b7fd0bed86c8a7a45919ffdb27bfc5e3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b7fd0bed86c8a7a45919ffdb27bfc5e3,
         type: 3}
@@ -251,6 +267,12 @@ GameObject:
 --- !u!4 &3693651303188924811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 750038968108082009, guid: b7fd0bed86c8a7a45919ffdb27bfc5e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4119333773612706514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2423716802287629856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7455685359145607950, guid: b7fd0bed86c8a7a45919ffdb27bfc5e3,
     type: 3}
   m_PrefabInstance: {fileID: 4119333773612706514}
   m_PrefabAsset: {fileID: 0}
