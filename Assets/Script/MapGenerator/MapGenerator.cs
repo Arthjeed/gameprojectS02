@@ -16,22 +16,28 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,100)]
 	public int randomFillPercent;
 
-	GameObject[] spheres = new GameObject[5];
-	GameObject[] capsules = new GameObject[5];
+	//GameObject[] spheres = new GameObject[5];
+	//GameObject[] capsules = new GameObject[5];
 
-	int[,] map;
+	public int[,] map;
 
 	public NavMeshSurface surface;
+
+	public bool useExistingMesh;
 
 	private NavMeshData navMeshData;
 	private NavMeshDataInstance navMeshDataInstance;
     private PhotonView PV;
 
+	public string mapTo2D;
+	
+
     void Start() {
         PV = GetComponent<PhotonView>();
 		// if (PV.IsMine) {
             GenerateMap();
-            surface.BuildNavMesh();
+			if (!useExistingMesh)
+            	surface.BuildNavMesh();
 	}
 
 	void Update() {
@@ -42,7 +48,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-	void Spawn(int[,] map) {
+	/*void Spawn(int[,] map) {
 
 		int nodeX = map.GetLength(0);
 		int nodeY = map.GetLength(1);
@@ -69,40 +75,60 @@ public class MapGenerator : MonoBehaviour {
 			if (map[mapX + 1, mapY] == 1 || map[mapX - 1, mapY] == 1)
 				capsules[i].transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
 		}
-	}
+	}*/
 
 	void GenerateMap() {
-		map = new int[width,height];
-		RandomFillMap();
+		if (!useExistingMesh) {
+			map = new int[width,height];
+			RandomFillMap();
 
-		for (int i = 0; i < 5; i ++) {
-			SmoothMap();
+			for (int i = 0; i < 5; i ++) {
+				SmoothMap();
+			}
+
+			ProcessMap ();
 		}
+			int borderSize = 1;
+			int[,] borderedMap = new int[width + borderSize * 2,height + borderSize * 2];
 
-		ProcessMap ();
-
-		int borderSize = 1;
-		int[,] borderedMap = new int[width + borderSize * 2,height + borderSize * 2];
-
-		for (int x = 0; x < borderedMap.GetLength(0); x ++) {
-			for (int y = 0; y < borderedMap.GetLength(1); y ++) {
-				if (x >= borderSize && x < width + borderSize && y >= borderSize && y < height + borderSize) {
-					borderedMap[x,y] = map[x-borderSize,y-borderSize];
-				}
-				else {
-					borderedMap[x,y] =1;
+		if (!useExistingMesh){
+			for (int x = 0; x < borderedMap.GetLength(0); x ++) {
+				for (int y = 0; y < borderedMap.GetLength(1); y ++) {
+					if (x >= borderSize && x < width + borderSize && y >= borderSize && y < height + borderSize) {
+						borderedMap[x,y] = map[x-borderSize,y-borderSize];
+					}
+					else {
+						borderedMap[x,y] =1;
+					}
 				}
 			}
+		} 	else {
+				for (int x = 0; x < width + borderSize * 2; x++){
+					for (int y = 0; y < height + borderSize * 2; y++)
+					{
+						borderedMap[x,y] = mapTo2D[x*(width+borderSize*2) + y] - '0';
+					}
+			}
 		}
+			string arrayString ="";
+			for (int x = 0; x < borderedMap.GetLength(0); x ++) {
+				for (int y = 0; y < borderedMap.GetLength(1); y ++) {
+					arrayString += string.Format("{0}", borderedMap[x,y]);
+				}
+				//arrayString += System.Environment.NewLine + System.Environment.NewLine;
+			}
+			Debug.Log(arrayString);
 
+		
 		MeshGenerator meshGen = GetComponent<MeshGenerator>();
-		meshGen.GenerateMesh(borderedMap, 1);
+		
+		meshGen.GenerateMesh(borderedMap, 1, useExistingMesh);
 		//Spawn(borderedMap);
 	}
 
 	void ProcessMap() {
 		List<List<Coord>> wallRegions = GetRegions (1);
-		int wallThresholdSize = 50;
+		int wallThresholdSize = 100;
 
 		foreach (List<Coord> wallRegion in wallRegions) {
 			if (wallRegion.Count < wallThresholdSize) {
@@ -113,7 +139,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		List<List<Coord>> roomRegions = GetRegions (0);
-		int roomThresholdSize = 50;
+		int roomThresholdSize = 100;
 		List<Room> survivingRooms = new List<Room> ();
 		
 		foreach (List<Coord> roomRegion in roomRegions) {
