@@ -35,6 +35,8 @@ public class MapGenerator : MonoBehaviour {
     void Start() {
         PV = GetComponent<PhotonView>();
 		// if (PV.IsMine) {
+            seed = (string) PhotonNetwork.CurrentRoom.CustomProperties["seed"];
+			Debug.Log(seed);
             GenerateMap();
 			if (!useExistingMesh)
             	surface.BuildNavMesh();
