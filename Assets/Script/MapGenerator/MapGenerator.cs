@@ -38,15 +38,15 @@ public class MapGenerator : MonoBehaviour {
             seed = (string) PhotonNetwork.CurrentRoom.CustomProperties["seed"];
 			Debug.Log(seed);
             GenerateMap();
-			if (!useExistingMesh)
-            	surface.BuildNavMesh();
+			// if (!useExistingMesh)
+            // 	surface.BuildNavMesh();
 	}
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.M)) {
 			GenerateMap();
-			navMeshDataInstance.Remove();
-			surface.BuildNavMesh();
+			// navMeshDataInstance.Remove();
+			// surface.BuildNavMesh();
 		}
 	}
 
