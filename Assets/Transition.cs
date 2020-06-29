@@ -18,6 +18,7 @@ public class Transition : MonoBehaviour
     }
 
     public void StartGame(){
-        canvasStart.SetActive(false);
+        // canvasStart.SetActive(false);
+        Debug.Log("toto");
     }
 }

@@ -14,14 +14,14 @@ public class UITextTypeWriter : MonoBehaviour {
         story = txt.text;
         txt.text = "";
         StartCoroutine ("PlayText");
-        // Screen.showCursor = true;
-        // Screen.lockCursor = false;
+        Cursor.visible = true;
+        Screen.lockCursor = false;
     }
 
     IEnumerator PlayText () {
         foreach (char c in story) {
             txt.text += c;
-            yield return new WaitForSeconds (0.100f);
+            yield return new WaitForSeconds (0.050f);
         }
     }
 
