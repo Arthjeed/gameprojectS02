@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae2cf816d3895042808f4dfd578730b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMinLevel: 2
-  enemyMaxLevel: 12
+  enemyMinLevel: 1
+  enemyMaxLevel: 5
   radius: 5
   frequence: 10
   enemyNumbers: 2
