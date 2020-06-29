@@ -27,10 +27,14 @@ public class DestroyerManagement : MonoBehaviour
     public LineRenderer lineRendererA;
     public LineRenderer lineRendererB;
 
-    public bool DebugTangente = false;
+    [SerializeField]
+    private bool DebugTangente = false;
     private bool attackState = true;
 
     private int choosingWichTangente = 0;
+
+    private List<GameObject> listChunks = new List<GameObject>();
+    private List<GameObject> listBody = new List<GameObject>();
 
 
     ///////////////////////////////////////////////////////////////
@@ -42,44 +46,30 @@ public class DestroyerManagement : MonoBehaviour
 
     // Update is called once per frame
 
-    void Start() {
-		System.Random pseudoRandom = new System.Random(Time.time.ToString().GetHashCode());
-    }
-
     void Update()
     {
         if (Input.GetKey(KeyCode.Space) && _created) {
             _created = false;
-            //head = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             head = Instantiate(head, transform.position, transform.rotation);
+            listChunks.Add(head);
+            listBody.Add(head.transform.GetChild(0).GetChild(0).gameObject);
             head.transform.SetParent(transform);
             for (int chunk = 0; chunk < chunkNumber; chunk++){
                 GameObject chunks = Instantiate(body, transform.position, transform.rotation);
+                listChunks.Add(chunks);
+                listBody.Add(chunks.transform.GetChild(0).GetChild(0).gameObject);
                 chunks.transform.SetParent(transform);
             }
             GameObject tailchunk = Instantiate(tail, transform.position, transform.rotation);
+            listChunks.Add(tailchunk);
+            listBody.Add(tailchunk.transform.GetChild(0).GetChild(0).gameObject);
             tailchunk.transform.SetParent(transform);
         }
 
-        /*if (Input.GetKey(KeyCode.RightArrow))
-			head.transform.Rotate(0.0f, 2.0f, 0.0f, Space.Self);
-		if (Input.GetKey(KeyCode.LeftArrow))
-			head.transform.Rotate(0.0f, -2.0f, 0.0f, Space.Self);					
-        if (Input.GetKey(KeyCode.UpArrow)) {
-            head.transform.position += head.transform.forward * speed * Time.deltaTime;
-        }*/
-
-    ////////////////////////////////////////////
-
-    if (_created == false) {
-       destroyerMovementHead();
-       destroyerBodyFollowing();
-    }
-
-    ////////////////////////////////////////////
-
         if (_created == false) {
-           
+            destroyerMovementHead();
+            destroyerBodyFollowingList();
+            StartCoroutine(manageShoot());
         }
     }
     
@@ -148,22 +138,28 @@ public class DestroyerManagement : MonoBehaviour
             head.transform.position += head.transform.forward * speed * Time.deltaTime;
         }
     }
-
-    void destroyerBodyFollowing()
+    void destroyerBodyFollowingList()
     {
-         for (int chunk = 1; chunk < chunkNumber + 2; chunk++){
-                _previousChildTransform = transform.GetChild(chunk - 1).transform;
-                _childTransform = transform.GetChild(chunk).transform;
-                _targetCoreClosestPoint = transform.GetChild(chunk - 1).GetChild(0).GetChild(0).GetComponent<CircleCollider2D>().bounds.ClosestPoint(_childTransform.position);
+        for (int chunk = 1; chunk < chunkNumber + 2; chunk++){
+            _previousChildTransform = listChunks[chunk - 1].transform;
+            _childTransform = listChunks[chunk].transform;
+            _targetCoreClosestPoint = listBody[chunk - 1].GetComponent<CircleCollider2D>().bounds.ClosestPoint(_childTransform.position);
 
-                if ((Vector3.Distance(_targetCoreClosestPoint, _childTransform.position) > 
-                Vector3.Distance(_targetCoreClosestPoint, _childTransform.position + _childTransform.forward * speed * Time.deltaTime)))
-                    _childTransform.position += _childTransform.forward * (speed) * Time.deltaTime;
+            if ((Vector3.Distance(_targetCoreClosestPoint, _childTransform.position) > 
+            Vector3.Distance(_targetCoreClosestPoint, _childTransform.position + _childTransform.forward * speed * Time.deltaTime)))
+                _childTransform.position += _childTransform.forward * (speed) * Time.deltaTime;
                 
-                if (transform.GetChild(chunk - 1).transform.position != _childTransform.position)
-                    _childTransform.rotation = Quaternion.LookRotation(new Vector3(transform.GetChild(chunk - 1).transform.position.x - _childTransform.position.x, 
-                    transform.GetChild(chunk - 1).transform.position.y - _childTransform.position.y, 0), Vector3.back).normalized;  
-            }
+            if (_previousChildTransform.position != _childTransform.position)
+                _childTransform.rotation = Quaternion.LookRotation(new Vector3(_previousChildTransform.position.x - _childTransform.position.x, 
+                _previousChildTransform.position.y - _childTransform.position.y, 0), Vector3.back).normalized;  
+        }
     }
+
+   IEnumerator manageShoot()
+   {
+       listBody[Random.Range(1, chunkNumber + 1)].GetComponent<DestroyerBodyBehavior>().shoot();
+        
+       yield return new WaitForSeconds(1.0f);
+   }
 
 }
