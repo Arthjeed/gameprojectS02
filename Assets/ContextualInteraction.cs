@@ -10,15 +10,20 @@ public class ContextualInteraction : MonoBehaviour
     [SerializeField]
     public Text[] TextList;
     public string[] StringList;
-    public bool Y;
-    public bool A;
-    public bool B;
-    public bool X;
+    public bool Y = false;
+    public bool A = false;
+    public bool B = false;
+    public bool X = false;
     private bool IsVisible  = false;
     private Canvas CanvasObject;
     // Start is called before the first frame update
     void Start()
     {
+        ButtonList[0].SetActive(false);
+        ButtonList[1].SetActive(false);
+        ButtonList[2].SetActive(false);
+        ButtonList[3].SetActive(false);
+
         CanvasObject = GetComponent<Canvas> ();
         if (Y) {
             ButtonList[0].SetActive(true);
