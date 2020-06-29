@@ -25,31 +25,79 @@ public class MapGenerator : MonoBehaviour {
 
 	public bool useExistingMesh;
 
+	public GameObject enemySpawner;
+
+	public GameObject spaceShip;
+
 	private NavMeshData navMeshData;
 	private NavMeshDataInstance navMeshDataInstance;
     private PhotonView PV;
 
+	private List<Room> savedListRoom = new List<Room>();
+
 	public string mapTo2D;
+
+	//public LineRenderer lineRenderer;
+
+	private List<GameObject> listEnemySpawner = new List<GameObject>();
 	
 
     void Start() {
         PV = GetComponent<PhotonView>();
 		// if (PV.IsMine) {
-            seed = (string) PhotonNetwork.CurrentRoom.CustomProperties["seed"];
-			Debug.Log(seed);
             GenerateMap();
-			// if (!useExistingMesh)
-            // 	surface.BuildNavMesh();
+			/*if (!useExistingMesh)
+            	surface.BuildNavMesh();*/
 	}
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.M)) {
 			GenerateMap();
-			// navMeshDataInstance.Remove();
-			// surface.BuildNavMesh();
+			savedListRoom = new List<Room>();
+			//navMeshDataInstance.Remove();
+			//surface.BuildNavMesh();
 		}
 	}
 
+	void SpawnPlayer(int[,] map) {	
+		//int a = 0;	
+		foreach (Coord tiles in savedListRoom[0].tiles)
+		{
+			//lineRenderer.SetPosition(a, new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500));
+			//lineRenderer.positionCount++;
+			if (Physics2D.OverlapArea(new Vector2(tiles.tileX * 30 - 1500 - 60, tiles.tileY * 30 - 1500 + 80),
+			 new Vector2(tiles.tileX * 30 - 1500 + 60, tiles.tileY * 30 - 1500 - 80)) == null)
+			{
+				//lineRenderer.SetPosition(0, new Vector2(tiles.tileX * 30 - 1500 - 60, tiles.tileY * 30 - 1500 + 80));
+				//lineRenderer.SetPosition(1, new Vector2(tiles.tileX * 30 - 1500 + 60,  tiles.tileY * 30 - 1500 - 80));
+				spaceShip.transform.position = new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500);
+			}
+		}
+	}
+
+	void SpawnSpawner(int[,] map) {
+		foreach (Room room in savedListRoom)
+		{
+			foreach (Coord tiles in room.tiles)
+			{
+				if (Physics2D.OverlapArea(new Vector2(tiles.tileX * 30 - 1500 - 100, tiles.tileY * 30 - 1500 + 100),
+			 	new Vector2(tiles.tileX * 30 - 1500 + 100, tiles.tileY * 30 - 1500 - 100)) == null)
+				{
+					//lineRenderer.SetPosition(0, new Vector2(tiles.tileX * 30 - 1500 - 100, tiles.tileY * 30 - 1500 + 100));
+					//lineRenderer.SetPosition(1, new Vector2(tiles.tileX * 30 - 1500 + 100,  tiles.tileY * 30 - 1500 - 100));
+					GameObject spawner = Instantiate(enemySpawner, new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500), Quaternion.identity);
+					listEnemySpawner.Add(spawner);
+					break;
+				}
+			}
+		}
+	}
+
+	
+
+	/*void Spawn(int[,] map) {
+
+	}*/
 	/*void Spawn(int[,] map) {
 
 		int nodeX = map.GetLength(0);
@@ -112,7 +160,7 @@ public class MapGenerator : MonoBehaviour {
 					}
 			}
 		}
-			string arrayString ="";
+			/*string arrayString ="";
 			for (int x = 0; x < borderedMap.GetLength(0); x ++) {
 				for (int y = 0; y < borderedMap.GetLength(1); y ++) {
 					arrayString += string.Format("{0}", borderedMap[x,y]);
@@ -120,12 +168,15 @@ public class MapGenerator : MonoBehaviour {
 				//arrayString += System.Environment.NewLine + System.Environment.NewLine;
 			}
 			Debug.Log(arrayString);
-
+		*/
 		
 		MeshGenerator meshGen = GetComponent<MeshGenerator>();
 		
 		meshGen.GenerateMesh(borderedMap, 1, useExistingMesh);
-		//Spawn(borderedMap);
+		SpawnPlayer(borderedMap);
+		Debug.Log(borderedMap.GetLength(0));
+		Debug.Log(borderedMap.GetLength(1));
+		SpawnSpawner(borderedMap);
 	}
 
 	void ProcessMap() {
@@ -152,11 +203,14 @@ public class MapGenerator : MonoBehaviour {
 			}
 			else {
 				survivingRooms.Add(new Room(roomRegion, map));
+				savedListRoom.Add(new Room(roomRegion, map)); //
 			}
 		}
 		survivingRooms.Sort ();
 		survivingRooms [0].isMainRoom = true;
 		survivingRooms [0].isAccessibleFromMainRoom = true;
+
+		savedListRoom.Sort(); //
 
 		ConnectClosestRooms (survivingRooms);
 	}
