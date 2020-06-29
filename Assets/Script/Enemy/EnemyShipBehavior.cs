@@ -27,9 +27,11 @@ public class EnemyShipBehavior : MonoBehaviour
     public GameObject deathAnimation;
     public ParticleSystem damageSmoke;
     public Material damageTexture;
+    public AudioSource damageSound;
     private Material originalTexture;
     private Renderer render;
     private PhotonView PV;
+
 
     void Start()
     {
@@ -42,7 +44,10 @@ public class EnemyShipBehavior : MonoBehaviour
         shipMovement.setDamage(ShipPower * 2);
         originalTexture = GetComponent<Renderer>().material;
         damageSmoke.Stop();
+        damageSound.Stop();
         render = GetComponent<Renderer>();
+        strafeDir = Random.Range(-1, 2);
+
     }
 
     void Update()
@@ -121,6 +126,7 @@ public class EnemyShipBehavior : MonoBehaviour
         damageSmoke.Play();
         if (life <= 0)
             DestroyShip();
+        damageSound.Play();
     }
 
     [PunRPC]

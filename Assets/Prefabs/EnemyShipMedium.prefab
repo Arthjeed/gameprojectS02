@@ -1,27 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1077835941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297786397525833430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52f476c7ba55034438f1e2e77b49d84c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShipAILevel: 2
-  ShipPower: 4
-  dropUranium: {fileID: 7624656741136397555, guid: 326638d32d334674c9b6e26f1dfc351a,
-    type: 3}
-  dropHealth: {fileID: 7624656741136397555, guid: 57bbde095f153f947a2d0a0dd6550435,
-    type: 3}
-  deathAnimation: {fileID: 1377424659350760, guid: f1de78bcb509f9f4f81dd92becbf341c,
-    type: 3}
-  damageSmoke: {fileID: 4410441630688876205}
-  damageTexture: {fileID: 2100000, guid: f5957c73401b96b45b0f1875f68df645, type: 2}
 --- !u!1001 &117186892437134435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37,7 +15,7 @@ PrefabInstance:
     - target: {fileID: -4650336777203566274, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
       propertyPath: socialDistancing
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: -4650336777203566274, guid: f9d62f963061d50469337e93005a8bc0,
         type: 3}
@@ -195,24 +173,27 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 5.53
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9088904077441907709, guid: f9d62f963061d50469337e93005a8bc0, type: 3}
+    - target: {fileID: 9088904077441907709, guid: f9d62f963061d50469337e93005a8bc0,
+        type: 3}
+      propertyPath: ShipAILevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088904077441907709, guid: f9d62f963061d50469337e93005a8bc0,
+        type: 3}
+      propertyPath: ShipPower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088904077441907709, guid: f9d62f963061d50469337e93005a8bc0,
+        type: 3}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 1377424659350760, guid: f1de78bcb509f9f4f81dd92becbf341c,
+        type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9d62f963061d50469337e93005a8bc0, type: 3}
---- !u!1 &6297786397525833430 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6252807758796319413, guid: f9d62f963061d50469337e93005a8bc0,
-    type: 3}
-  m_PrefabInstance: {fileID: 117186892437134435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5329434894803991744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5212248165575614627, guid: f9d62f963061d50469337e93005a8bc0,
-    type: 3}
-  m_PrefabInstance: {fileID: 117186892437134435}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4410441630688876205 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4365498287730592462, guid: f9d62f963061d50469337e93005a8bc0,
     type: 3}
   m_PrefabInstance: {fileID: 117186892437134435}
   m_PrefabAsset: {fileID: 0}

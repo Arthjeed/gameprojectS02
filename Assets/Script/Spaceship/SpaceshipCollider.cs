@@ -34,6 +34,7 @@ public class SpaceshipCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
             health.changeHealth(- collision.gameObject.GetComponent<LaserBehavior>().damage);
+            collision.gameObject.GetComponent<LaserBehavior>().explose();
         }
     }
 }
