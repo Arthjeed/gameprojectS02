@@ -17,7 +17,7 @@ public class Gather : MonoBehaviour {
     void Update () {
         distance = Vector3.Distance (transform.position, player.transform.position);
         if (distance < DistanceMax) {
-            move.AddForce ((player.transform.position - transform.position) * (16));
+            move.AddForce ((player.transform.position - transform.position) );
         }
 
     }
