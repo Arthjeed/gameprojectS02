@@ -87,11 +87,11 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     public void startGame () {
         if (PhotonNetwork.IsMasterClient) {
-            var rand = new System.Random();
-            int seed = rand.Next();
-            
+            var rand = new System.Random ();
+            int seed = rand.Next ();
+
             Hashtable hash = new Hashtable ();
-            hash.Add ("seed", seed.ToString());
+            hash.Add ("seed", seed.ToString ());
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.LoadLevel (multiplayerSceneIndex);
         }
@@ -124,17 +124,21 @@ public class RoomController : MonoBehaviourPunCallbacks {
             Hashtable hash = new Hashtable ();
             hash.Add ("loading", true);
             PhotonNetwork.CurrentRoom.SetCustomProperties (hash);
-            PhotonNetwork.LoadLevel (multiplayerSceneIndex);
+            StartCoroutine(launchLevel());
         }
     }
 
-    private void loadingScreen(){
-        roomPanel.SetActive(false);
-        loadingPanel.SetActive(true);
+    IEnumerator launchLevel () {
+        yield return new WaitForSeconds (10);
+        PhotonNetwork.LoadLevel (multiplayerSceneIndex);
+    }
+
+    private void loadingScreen () {
+        roomPanel.SetActive (false);
+        loadingPanel.SetActive (true);
     }
     // Start is called before the first frame update
     void Start () {
-        selectedText.text = "You have selected : char 1"; 
         if (PhotonNetwork.IsMasterClient) {
             Hashtable hash = new Hashtable ();
             hash.Add ("ready", 1);
@@ -146,8 +150,8 @@ public class RoomController : MonoBehaviourPunCallbacks {
     void Update () {
         IsLoading = (bool) PhotonNetwork.CurrentRoom.CustomProperties["loading"];
         ready = (int) PhotonNetwork.CurrentRoom.CustomProperties["ready"];
-        if (IsLoading) 
-            loadingScreen();
+        if (IsLoading)
+            loadingScreen ();
         if (ready >= PhotonNetwork.PlayerList.Length && !playerReady && PhotonNetwork.IsMasterClient) {
             startButton.SetActive (true);
         } else if (!(ready == PhotonNetwork.PlayerList.Length) && !playerReady && PhotonNetwork.IsMasterClient) {
