@@ -8,6 +8,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class RoomController : MonoBehaviourPunCallbacks {
 
+    private bool IsLoading;
     public Text selectedText;
     [SerializeField]
     private int multiplayerSceneIndex;
@@ -16,6 +17,8 @@ public class RoomController : MonoBehaviourPunCallbacks {
     private GameObject lobbyPanel;
     [SerializeField]
     private GameObject roomPanel;
+    [SerializeField]
+    private GameObject loadingPanel;
 
     [SerializeField]
     private GameObject startButton;
@@ -84,6 +87,11 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     public void startGame () {
         if (PhotonNetwork.IsMasterClient) {
+            var rand = new System.Random ();
+            int seed = rand.Next ();
+
+            Hashtable hash = new Hashtable ();
+            hash.Add ("seed", seed.ToString ());
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.LoadLevel (multiplayerSceneIndex);
         }
@@ -113,14 +121,24 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     private void StartGame () {
         if (PhotonNetwork.IsMasterClient) {
-            Debug.Log ("starting game");
-            PhotonNetwork.LoadLevel (multiplayerSceneIndex);
+            Hashtable hash = new Hashtable ();
+            hash.Add ("loading", true);
+            PhotonNetwork.CurrentRoom.SetCustomProperties (hash);
+            StartCoroutine(launchLevel());
         }
     }
 
+    IEnumerator launchLevel () {
+        yield return new WaitForSeconds (10);
+        PhotonNetwork.LoadLevel (multiplayerSceneIndex);
+    }
+
+    private void loadingScreen () {
+        roomPanel.SetActive (false);
+        loadingPanel.SetActive (true);
+    }
     // Start is called before the first frame update
     void Start () {
-        selectedText.text = "You have selected : char 1"; 
         if (PhotonNetwork.IsMasterClient) {
             Hashtable hash = new Hashtable ();
             hash.Add ("ready", 1);
@@ -130,7 +148,10 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     // Update is called once per frame
     void Update () {
+        IsLoading = (bool) PhotonNetwork.CurrentRoom.CustomProperties["loading"];
         ready = (int) PhotonNetwork.CurrentRoom.CustomProperties["ready"];
+        if (IsLoading)
+            loadingScreen ();
         if (ready >= PhotonNetwork.PlayerList.Length && !playerReady && PhotonNetwork.IsMasterClient) {
             startButton.SetActive (true);
         } else if (!(ready == PhotonNetwork.PlayerList.Length) && !playerReady && PhotonNetwork.IsMasterClient) {

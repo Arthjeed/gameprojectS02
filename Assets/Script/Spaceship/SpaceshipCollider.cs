@@ -26,7 +26,7 @@ public class SpaceshipCollider : MonoBehaviour
         {
             drop = collision.gameObject.GetComponent<DropBehavior>();
             if (drop.type == DropBehavior.TypeDrop.Health)
-                health.changeHealth(collision.gameObject.GetComponent<DropBehavior>().value * 2);
+                health.changeHealth(collision.gameObject.GetComponent<DropBehavior>().value * 100);
             if (drop.type == DropBehavior.TypeDrop.Uranium)
                 uranium.addUranium(collision.gameObject.GetComponent<DropBehavior>().value);
             Destroy(collision.gameObject);
@@ -34,6 +34,7 @@ public class SpaceshipCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
             health.changeHealth(- collision.gameObject.GetComponent<LaserBehavior>().damage);
+            collision.gameObject.GetComponent<LaserBehavior>().explose();
         }
     }
 }

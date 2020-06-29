@@ -57,11 +57,17 @@ public class LaserBehavior : MonoBehaviour
     {
         if ((collision.collider.tag == "Player" || collision.collider.tag == "Shield" || collision.collider.tag == "Obstacle") && !isExploding)
         {
-            isExploding = true;
-            Explosion.Stop();
-            Explosion.time = 0;
-            Explosion.Play();
-            laser.SetActive(false);
+            explose();
         }
+    }
+
+    public void explose()
+    {
+        print("yes");
+        isExploding = true;
+        Explosion.Stop();
+        Explosion.time = 0;
+        Explosion.Play();
+        laser.SetActive(false);
     }
 }
