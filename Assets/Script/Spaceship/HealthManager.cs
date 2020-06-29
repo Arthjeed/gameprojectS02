@@ -24,7 +24,8 @@ public class HealthManager : MonoBehaviour
     public void changeHealth(float amount)
     {
         health += amount;
-
+        if (health > maxHealth)
+            health = maxHealth;
         HealthBar.GetComponent<Slider>().value = (health / maxHealth);
     }
 
