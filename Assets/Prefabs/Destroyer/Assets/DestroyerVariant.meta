@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Destroyer/Assets/DestroyerVariant.meta
 guid: 383557b8f752d284b8767af9aaa588e0
 folderAsset: yes
+=======
+guid: e23a1fd2800e7f04f8dc86a367b55613
+>>>>>>> master:Assets/Scenes/test ui.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
