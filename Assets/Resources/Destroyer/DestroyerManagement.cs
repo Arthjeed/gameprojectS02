@@ -129,6 +129,10 @@ public class DestroyerManagement : MonoBehaviour
             lineRendererB.SetPosition(0, head.transform.position);
             lineRendererB.SetPosition(1, tanExtrapolateB);
         }
+        if (dead == true) {
+            head.transform.position += head.transform.forward * speed * Time.deltaTime;
+            return ;
+        }
 
         if (Vector2.Distance(head.transform.position, spaceship.transform.position) > distance + 20 && attackState == true)
         {
@@ -181,19 +185,6 @@ public class DestroyerManagement : MonoBehaviour
    {
         if (_created == false && dead == false) {
             int randomNbr = 0;
-
-            /*while (savedListBody.Count > 0)
-            {
-                randomNbr = Random.Range(0, savedListBody.Count);
-                if (!listBody[randomNbr].GetComponent<DestroyerBodyBehavior>().isAlive())
-                    listBody.RemoveAt(randomNbr);
-                else
-                    break;
-            }
-            if (savedListBody.Count > 0)
-                listBody[randomNbr].GetComponent<DestroyerBodyBehavior>().shoot(spaceship.transform.position);
-            else
-                Debug.Log("DEAD");*/
            do
             {
                 if (isAlive() == false) {
