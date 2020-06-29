@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socialDistancing: 120
-  speed: 35
+  speed: 25
 --- !u!58 &1436265493449810929
 CircleCollider2D:
   m_ObjectHideFlags: 0

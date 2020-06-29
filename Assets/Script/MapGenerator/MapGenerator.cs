@@ -40,6 +40,8 @@ public class MapGenerator : MonoBehaviour {
 	//public LineRenderer lineRenderer;
 
 	private List<GameObject> listEnemySpawner = new List<GameObject>();
+
+    private float timer = 0;
 	
 
     void Start() {
@@ -57,7 +59,18 @@ public class MapGenerator : MonoBehaviour {
 			//navMeshDataInstance.Remove();
 			//surface.BuildNavMesh();
 		}
-	}
+
+        timer += Time.deltaTime;
+        if (timer >= 20)
+        {
+            timer = 0;
+            for (int i = 0; i < listEnemySpawner.Count; i++)
+            {
+                listEnemySpawner[i].GetComponent<SpawnerManagement>().enemyMinLevel += 1;
+                listEnemySpawner[i].GetComponent<SpawnerManagement>().enemyMaxLevel += 1;
+            }
+        }
+    }
 
 	void SpawnPlayer(int[,] map) {	
 		//int a = 0;	
