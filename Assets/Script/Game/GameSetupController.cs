@@ -11,6 +11,7 @@ public class GameSetupController : MonoBehaviour
     public Transform[] spawnPoints;
     // Start is called before the first frame update
     public Transform spaceship;
+    public AudioSource backgroundMusic;
     
     private void OnEnable() {
         if (GameSetupController.GS == null) {
@@ -21,6 +22,8 @@ public class GameSetupController : MonoBehaviour
     void Start()
     {
         CreatePlayer();
+        backgroundMusic.loop = true;
+        backgroundMusic.Play();
     }
 
     private void CreatePlayer() {
