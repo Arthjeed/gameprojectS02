@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SpawnerManagement : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class SpawnerManagement : MonoBehaviour
 
     private void Spawn(GameObject unit, int level)
     {
-        GameObject enemy = Instantiate(unit, transform);
+        GameObject enemy = PhotonNetwork.Instantiate(unit.name, transform.position, transform.rotation);
         enemy.GetComponent<EnemyShipBehavior>().ShipPower = level;
         enemy.transform.position = enemy.transform.position + new Vector3(Random.Range(-radius, radius), Random.Range(-radius, radius), 0);
     }
