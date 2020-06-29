@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
-  speedMissile: 50
+  speedMissile: 40
   reloadTime: 50
   masse: 100
   reactorLight: {fileID: 5212248165575614627}

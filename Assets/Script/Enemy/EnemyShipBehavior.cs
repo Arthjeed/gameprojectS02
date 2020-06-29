@@ -16,6 +16,9 @@ public class EnemyShipBehavior : MonoBehaviour
     private float dmgAnimeLapse = 0.1f;
     private float dmgAnimeCount = 0;
     private bool damaged = false;
+    private float dirMaxTime = 100;
+    private float dirTimer = 50;
+    private int strafeDir = 0;
 
     public int ShipAILevel = 1;
     public int ShipPower = 2;
@@ -50,6 +53,17 @@ public class EnemyShipBehavior : MonoBehaviour
         //player.position += (Vector3.up /50);
         if (damaged)
             checkDmgAnimation();
+
+        if (ShipAILevel == 3)
+        {
+            dirTimer--;
+            if (dirTimer < 0)
+            {
+                strafeDir = Random.Range(-1, 2);
+                dirTimer = dirMaxTime;
+            }
+        }
+
     }
 
     void checkDistance()
@@ -66,13 +80,17 @@ public class EnemyShipBehavior : MonoBehaviour
                         break;
                     case 2:
                         shipMovement.shoot();
-                        shipMovement.strafe(-1, player);
+                        shipMovement.strafe(strafeDir, player);
+                        break;
+                    case 3:
+                        shipMovement.shoot();
+                        shipMovement.strafe(strafeDir, player);
                         break;
                 }
-                   
+
                 shipMovement.reactorShutDown();
             }
-            else 
+            else
             {
                 follow.followTarget(player);
                 shipMovement.reactorIgnit();
@@ -82,7 +100,7 @@ public class EnemyShipBehavior : MonoBehaviour
 
     void explore()
     {
-     
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -132,16 +150,15 @@ public class EnemyShipBehavior : MonoBehaviour
     {
         int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
         int typeDrop = Random.Range(1, 3);
-        print(typeDrop);
 
-        GameObject animation = Instantiate(deathAnimation, transform.localPosition, Random.rotation);
+        GameObject animation = Instantiate(deathAnimation, transform.position, Random.rotation);
         animation.transform.localScale = new Vector3(10, 10, 10);
         if (sizeDrop >= 1 && typeDrop != 0)
         {
             GameObject drop = dropUranium;
             if (typeDrop == 2)
                 drop = dropHealth;
-            GameObject newDrop = Instantiate(drop, transform.localPosition, transform.rotation);
+            GameObject newDrop = Instantiate(drop, transform.position, transform.rotation);
             newDrop.GetComponent<DropBehavior>().setValue(sizeDrop);
         }
         Destroy(gameObject);
