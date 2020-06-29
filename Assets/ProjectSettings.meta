@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Destroyer.meta
+guid: 3bf3ef3aea076e842a3384f0b90de57b
+=======
 guid: a63efe3a465911249af315ee4bf5241b
+>>>>>>> master:Assets/ProjectSettings.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
