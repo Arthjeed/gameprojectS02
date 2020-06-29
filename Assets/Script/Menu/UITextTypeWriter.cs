@@ -14,8 +14,7 @@ public class UITextTypeWriter : MonoBehaviour {
         story = txt.text;
         txt.text = "";
         StartCoroutine ("PlayText");
-        Cursor.visible = true;
-        Screen.lockCursor = false;
+
     }
 
     IEnumerator PlayText () {

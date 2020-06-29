@@ -96,7 +96,7 @@ public class LobbyController : MonoBehaviourPunCallbacks {
     public void CreateRoom () {
         Debug.Log ("creating Room");
         RoomOptions option = new RoomOptions () { IsVisible = true, IsOpen = true, MaxPlayers = (byte) roomSize };
-        option.CustomRoomProperties = new Hashtable() {{"ready", 1}, {"seed", ""}};
+        option.CustomRoomProperties = new Hashtable() {{"ready", 1}, {"seed", ""}, {"loading", false}};
         PhotonNetwork.CreateRoom (roomName, option);
     }
 
