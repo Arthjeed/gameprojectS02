@@ -84,6 +84,11 @@ public class RoomController : MonoBehaviourPunCallbacks {
 
     public void startGame () {
         if (PhotonNetwork.IsMasterClient) {
+            var rand = new Random();
+            var seed;
+            rand.Next(seed);
+            Hashtable hash = new Hashtable ();
+            hash.Add ("seed", seed.ToString());
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.LoadLevel (multiplayerSceneIndex);
         }
