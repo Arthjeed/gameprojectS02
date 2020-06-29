@@ -12,6 +12,7 @@ public class SpawnerManagement : MonoBehaviour
 
     public GameObject EnemyShipWeak;
     public GameObject EnemyShipMedium;
+    public GameObject EnemyShipHard;
 
     private int weakMinLvl = 0;
     private int mediumMinLvl = 5;
@@ -38,7 +39,6 @@ public class SpawnerManagement : MonoBehaviour
     private void SpawnEnemies()
     {
         int level;
-        print("spawn");
         for (int i = 0; i < enemyNumbers; i++)
         {
             level = Random.Range(enemyMinLevel, enemyMaxLevel + 1);
@@ -46,6 +46,8 @@ public class SpawnerManagement : MonoBehaviour
                 Spawn(EnemyShipWeak, level);
             else if (level >= mediumMinLvl && level < hardMinLvl)
                 Spawn(EnemyShipMedium, level);
+            else if (level >= hardMinLvl)
+                Spawn(EnemyShipHard, level);
         }
     }
 
