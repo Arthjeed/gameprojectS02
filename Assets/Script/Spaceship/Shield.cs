@@ -76,7 +76,7 @@ public class Shield : MonoBehaviour
         if (inputValue != 0)
         {
             Vector2 parentPos = parent.transform.position;
-            transform.RotateAround(parentPos, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime);
+            transform.RotateAround(parentPos, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime * 1.5f);
         }
     }
 

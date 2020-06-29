@@ -74,7 +74,7 @@ public class Turret : MonoBehaviour
                 angle = angle + (inputValue * Time.deltaTime * rotateAngleSpeed);
                 float x = Mathf.Cos(angle * Mathf.Deg2Rad) * rayon;
                 float y = Mathf.Sin(angle * Mathf.Deg2Rad) * rayon;
-                transf.RotateAround(transf.position, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime);
+                transf.RotateAround(transf.position, Vector3.forward, inputValue * rotateAngleSpeed * Time.deltaTime *2);
                 // transf.localPosition = new Vector3(x, y);
                 // transf.localPosition = startPosition;
             }
