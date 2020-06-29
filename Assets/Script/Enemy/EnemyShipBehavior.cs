@@ -149,7 +149,7 @@ public class EnemyShipBehavior : MonoBehaviour
         }
     }
 
-    void DestroyShip()
+    public void DestroyShip()
     {
         int sizeDrop = Random.Range(ShipPower - 1, ShipPower + 2);
         int typeDrop = Random.Range(1, 3);
