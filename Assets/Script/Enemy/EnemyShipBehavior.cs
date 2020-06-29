@@ -28,13 +28,12 @@ public class EnemyShipBehavior : MonoBehaviour
     public ParticleSystem damageSmoke;
     public Material damageTexture;
     private Material originalTexture;
+    private Renderer render;
     private PhotonView PV;
 
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        if (!PV.IsMine && PhotonNetwork.IsConnected)
-            this.enabled = false;
         shipMovement = GetComponent<EnemyShipMovement>();
         follow = GetComponent<FollowPlayer>();
         player = GameObject.FindGameObjectWithTag("Spaceship").transform;
@@ -43,13 +42,13 @@ public class EnemyShipBehavior : MonoBehaviour
         shipMovement.setDamage(ShipPower * 2);
         originalTexture = GetComponent<Renderer>().material;
         damageSmoke.Stop();
-        strafeDir = Random.Range(-1, 2);
-        strafeDir = (strafeDir == 0) ? -1 : 1;
+        render = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        checkDistance();
+        if (PV.IsMine)
+            checkDistance();
         //shipMovement.strafe(transform.right);
         //player.position += (Vector3.up /50);
         if (damaged)
@@ -88,10 +87,10 @@ public class EnemyShipBehavior : MonoBehaviour
                         shipMovement.strafe(strafeDir, player);
                         break;
                 }
-                   
+
                 shipMovement.reactorShutDown();
             }
-            else 
+            else
             {
                 follow.followTarget(player);
                 shipMovement.reactorIgnit();
@@ -101,7 +100,7 @@ public class EnemyShipBehavior : MonoBehaviour
 
     void explore()
     {
-     
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,8 +113,21 @@ public class EnemyShipBehavior : MonoBehaviour
 
     public void TakeDamage(float playerDamage)
     {
+        PV.RPC("TakeDamageRPC", RpcTarget.Others, playerDamage);
         life -= playerDamage;
-        GetComponent<Renderer>().material = damageTexture;
+        render.material = damageTexture;
+        dmgAnimeCount = dmgAnimeLapse;
+        damaged = true;
+        damageSmoke.Play();
+        if (life <= 0)
+            DestroyShip();
+    }
+
+    [PunRPC]
+    void TakeDamageRPC(float playerDamage)
+    {
+        life -= playerDamage;
+        render.material = damageTexture;
         dmgAnimeCount = dmgAnimeLapse;
         damaged = true;
         damageSmoke.Play();
@@ -129,7 +141,7 @@ public class EnemyShipBehavior : MonoBehaviour
         {
             dmgAnimeCount -= Time.deltaTime;
             if (dmgAnimeCount <= 0)
-                GetComponent<Renderer>().material = originalTexture;
+                render.material = originalTexture;
 
         }
     }

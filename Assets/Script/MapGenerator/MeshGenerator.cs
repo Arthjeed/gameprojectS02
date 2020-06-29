@@ -18,7 +18,7 @@ public class MeshGenerator : MonoBehaviour {
 	List<List<int>> outlines = new List<List<int>> ();
 	HashSet<int> checkedVertices = new HashSet<int>();
 
-	public void GenerateMesh(int[,] map, float squareSize) {
+	public void GenerateMesh(int[,] map, float squareSize, bool useExistingMesh) {
 
 		triangleDictionary.Clear ();
 		outlines.Clear ();
@@ -53,10 +53,12 @@ public class MeshGenerator : MonoBehaviour {
 		mesh.uv = uvs;
 	
 
-		if (is2D) {
-			Generate2DColliders();
-		} else {
-			CreateWallMesh ();
+		if (!useExistingMesh) {
+			if (is2D) {
+				Generate2DColliders();
+			} else {
+				CreateWallMesh ();
+			}
 		}
 	}
 

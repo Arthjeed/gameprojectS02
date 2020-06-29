@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: -1681648498818335275}
   - component: {fileID: 8319547214166486166}
   - component: {fileID: -7591252694720372929}
-  - component: {fileID: -7543600928318756001}
+  - component: {fileID: 6674598687636634248}
   m_Layer: 0
   m_Name: ProjectileTurret
   m_TagString: AllyProjectile
@@ -149,11 +149,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: -7543600928318756001}
+  - {fileID: 6674598687636634248}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-7543600928318756001
+--- !u!114 &6674598687636634248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
