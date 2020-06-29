@@ -43,11 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae2cf816d3895042808f4dfd578730b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMinLevel: 2
-  enemyMaxLevel: 12
+  enemyMinLevel: 1
+  enemyMaxLevel: 5
   radius: 5
-  frequence: 10
-  enemyNumbers: 2
+  frequence: 15
+  enemyNumbers: 1
   EnemyShipWeak: {fileID: 6252807758796319413, guid: f9d62f963061d50469337e93005a8bc0,
     type: 3}
   EnemyShipMedium: {fileID: 6297786397525833430, guid: 2cbd92631e22f4f49a0d47576b6cbfbf,

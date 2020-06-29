@@ -14,7 +14,10 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            exit();
+        }
     }
     public void exit(){
         SceneManager.LoadScene("MainMenu");

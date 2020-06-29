@@ -41,5 +41,10 @@ public class SpaceshipCollider : MonoBehaviour
             health.changeHealth(- collision.gameObject.GetComponent<BossProjectile>().damage);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyShipBehavior>().DestroyShip();
+            health.changeHealth(-25);
+        }
     }
 }
