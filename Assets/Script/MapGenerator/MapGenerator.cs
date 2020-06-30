@@ -91,6 +91,7 @@ public class MapGenerator : MonoBehaviour {
 	void SpawnSpawner(int[,] map) {
 		foreach (Room room in savedListRoom)
 		{
+			List<Vector2> listPossibleSpawner = new List<Vector2>();
 			foreach (Coord tiles in room.tiles)
 			{
 				if (Physics2D.OverlapArea(new Vector2(tiles.tileX * 30 - 1500 - 100, tiles.tileY * 30 - 1500 + 100),
@@ -98,10 +99,21 @@ public class MapGenerator : MonoBehaviour {
 				{
 					//lineRenderer.SetPosition(0, new Vector2(tiles.tileX * 30 - 1500 - 100, tiles.tileY * 30 - 1500 + 100));
 					//lineRenderer.SetPosition(1, new Vector2(tiles.tileX * 30 - 1500 + 100,  tiles.tileY * 30 - 1500 - 100));
-					GameObject spawner = Instantiate(enemySpawner, new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500), Quaternion.identity);
-					listEnemySpawner.Add(spawner);
-					break;
+
+					listPossibleSpawner.Add(new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500));
+					//GameObject spawner = Instantiate(enemySpawner, new Vector2(tiles.tileX * 30 - 1500, tiles.tileY * 30 - 1500), Quaternion.identity);
+					//listEnemySpawner.Add(spawner);
 				}
+			}
+			if (listPossibleSpawner.Count > 0)
+			{
+				GameObject spawner = Instantiate(enemySpawner, new Vector2(listPossibleSpawner[listPossibleSpawner.Count / 2].x, listPossibleSpawner[listPossibleSpawner.Count / 2].y), Quaternion.identity);
+				listEnemySpawner.Add(spawner);
+			}
+			if (listPossibleSpawner.Count > 1000)
+			{
+				GameObject spawner = Instantiate(enemySpawner, new Vector2(listPossibleSpawner[0].x, listPossibleSpawner[0].y), Quaternion.identity);
+				listEnemySpawner.Add(spawner);
 			}
 		}
 	}
