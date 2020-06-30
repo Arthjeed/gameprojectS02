@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7982720755665196990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7982720755665196988}
+  - component: {fileID: 7982720755665196989}
+  m_Layer: 0
+  m_Name: Destroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7982720755665196988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7982720755665196990}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &7982720755665196989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7982720755665196990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37daa48fdc9ddf4408fe9cb71bc9956c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 189650420173368564, guid: 819eae59443dffb4ea95eaa97968ef4a, type: 3}
+  body: {fileID: 5335425440615707611, guid: 08648b1ea4cf7e745948f79f757faf0a, type: 3}
+  tail: {fileID: 5499337344992702681, guid: 332ff45bc0c75d64a9323d9a9b5c4064, type: 3}
+  speed: 100
+  chunkNumber: 50
+  spaceship: {fileID: 0}
+  distance: 100
+  distanceMax: 150
+  rotateSpeed: 50
+  secondPerShoot: 0.5
+  lineRendererA: {fileID: 0}
+  lineRendererB: {fileID: 0}
+  DebugTangente: 0
